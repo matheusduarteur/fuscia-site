@@ -22,24 +22,27 @@ function waLink() {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 16, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 14, filter: "blur(10px)" },
   visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
 const fade = {
-  hidden: { opacity: 0, filter: "blur(8px)" },
+  hidden: { opacity: 0, filter: "blur(10px)" },
   visible: { opacity: 1, filter: "blur(0px)" },
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.06 } },
 };
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur">
-      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: BRAND.accent }} />
+    <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200/70 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur">
+      <span
+        className="h-2 w-2 rounded-full"
+        style={{ background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+      />
       {children}
     </span>
   );
@@ -81,53 +84,87 @@ const steps = [
 ];
 
 const faqs = [
-  { q: "Vocês trabalham com qual tipo de negócio?", a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real." },
+  {
+    q: "Vocês trabalham com qual tipo de negócio?",
+    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real.",
+  },
   { q: "Preciso ter site pronto?", a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago." },
-  { q: "Qual o prazo pra começar?", a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking." },
-  { q: "Vocês fazem só tráfego?", a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos." },
-  { q: "Como funciona o primeiro contato?", a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo." },
+  {
+    q: "Qual o prazo pra começar?",
+    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
+  },
+  {
+    q: "Vocês fazem só tráfego?",
+    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos.",
+  },
+  {
+    q: "Como funciona o primeiro contato?",
+    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo.",
+  },
 ];
 
 function GlassCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur transition hover:bg-white">
+    <div className="group rounded-2xl border border-zinc-200/70 bg-white/65 p-5 shadow-[0_18px_60px_-45px_rgba(0,0,0,0.25)] backdrop-blur transition hover:bg-white">
       <p className="text-sm font-semibold text-zinc-950">{title}</p>
       <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{desc}</p>
+      <div
+        className="mt-4 h-[2px] w-12 rounded-full opacity-0 transition group-hover:opacity-100"
+        style={{ background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+      />
     </div>
   );
 }
 
 /**
- * FOTO “SEM FUNDO” (mesmo quando o recorte fica com matte branco)
- * - mixBlendMode: multiply apaga branco residual no fundo branco
- * - glow leve + drop-shadow mantém presença premium
+ * HERO Portrait premium (mobile-first)
+ * - Em mobile, ela fica “encaixada” e não vira um bloco quadrado
+ * - mixBlendMode multiply ajuda a apagar matte branco
  */
 function HeroPortrait() {
   return (
-    <div className="relative w-full">
-      <div className="relative aspect-[9/16] w-full">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.16), transparent 62%)",
-          }}
-        />
-        <Image
-          src="/socia.png"
-          alt="Sócia da Fúcsia"
-          fill
-          priority
-          className="object-contain select-none"
-          style={{
-            mixBlendMode: "multiply",
-            filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.18))",
-          }}
-        />
-      </div>
+    <div className="relative">
+      {/* glow */}
+      <div
+        className="pointer-events-none absolute -inset-4 -z-10 rounded-[28px] opacity-60 blur-2xl"
+        style={{
+          background:
+            "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.25), transparent 60%)",
+        }}
+      />
 
-      <div className="mt-2">
-        <p className="text-xs font-semibold text-zinc-900">+6 anos de mercado</p>
-        <p className="mt-1 text-[11px] text-zinc-600">Estratégia • Tráfego • Copy • Criativos</p>
+      <div className="relative overflow-hidden rounded-[28px] border border-zinc-200/70 bg-white/55 backdrop-blur shadow-[0_30px_90px_-65px_rgba(0,0,0,0.35)]">
+        {/* frame */}
+        <div className="absolute inset-0 bg-[radial-gradient(700px_420px_at_70%_30%,rgba(124,58,237,0.12),transparent_55%)]" />
+
+        {/* conteúdo */}
+        <div className="relative p-3">
+          {/* altura controlada no mobile pra ficar na dobra */}
+          <div className="relative h-[270px] sm:h-[340px] lg:h-[420px]">
+            <Image
+              src="/socia.png"
+              alt="Sócia da Fúcsia"
+              fill
+              priority
+              className="object-contain select-none"
+              style={{
+                mixBlendMode: "multiply",
+                filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.18))",
+              }}
+            />
+          </div>
+
+          <div className="mt-2 flex items-center justify-between gap-3 rounded-2xl border border-zinc-200/70 bg-white/70 px-3 py-2 backdrop-blur">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold text-zinc-950 truncate">Giovanna Duarte</p>
+              <p className="text-[11px] text-zinc-600 truncate">Estratégia • Performance</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs font-semibold text-zinc-950">+6 anos</p>
+              <p className="text-[11px] text-zinc-600">de mercado</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -135,16 +172,18 @@ function HeroPortrait() {
 
 export default function Page() {
   const hasWhatsApp = Boolean(WHATSAPP_NUMBER);
+  const whatsappHref = hasWhatsApp ? waLink() : "#contato";
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 22 });
 
   return (
     <div className="min-h-screen bg-white text-zinc-900">
-      {/* Fundo premium branco */}
+      {/* Fundo premium (paper + glow) */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(1100px_650px_at_18%_10%,rgba(225,29,255,0.16),transparent_55%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.10),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(1100px_650px_at_15%_8%,rgba(225,29,255,0.18),transparent_55%),radial-gradient(900px_520px_at_85%_18%,rgba(124,58,237,0.12),transparent_60%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.92),rgba(255,255,255,1))]" />
+        <div className="absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(0,0,0,0.55)_1px,transparent_1px)] [background-size:22px_22px]" />
       </div>
 
       {/* Barra progresso */}
@@ -156,20 +195,20 @@ export default function Page() {
         }}
       />
 
-      {/* WhatsApp flutuante */}
+      {/* WhatsApp flutuante (desktop) */}
       {hasWhatsApp ? (
         <Link
-          href={waLink()}
+          href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed z-[55] bottom-5 right-5 rounded-2xl border border-zinc-200 bg-white/80 px-4 py-3 text-sm font-semibold text-zinc-900 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.25)] backdrop-blur hover:bg-white"
+          className="hidden sm:inline-flex fixed z-[55] bottom-5 right-5 rounded-2xl border border-zinc-200 bg-white/80 px-4 py-3 text-sm font-semibold text-zinc-900 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.25)] backdrop-blur hover:bg-white"
         >
           💬 WhatsApp
         </Link>
       ) : null}
 
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/70 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/72 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
@@ -191,7 +230,7 @@ export default function Page() {
             <a href="#faq" className="hover:text-zinc-950">FAQ</a>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2">
             <a
               href="#contato"
               className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
@@ -204,34 +243,34 @@ export default function Page() {
       </header>
 
       <main>
-        {/* HERO */}
-        <section className="mx-auto max-w-6xl px-4 pt-10 pb-6 sm:pt-16">
-          {/* Linha 1: Texto + Foto */}
-          <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_220px] lg:grid-cols-3 lg:items-start">
-            <motion.div className="lg:col-span-2" initial="hidden" animate="visible" variants={stagger}>
+        {/* HERO (mobile-first) */}
+        <section className="mx-auto max-w-6xl px-4 pt-7 pb-8 sm:pt-14">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="grid gap-6 lg:grid-cols-2 lg:items-start">
+            {/* Texto */}
+            <div>
               <motion.div variants={fadeUp}>
                 <Pill>Full service • performance de verdade</Pill>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-4 text-[30px] leading-tight sm:text-5xl font-semibold tracking-tight text-zinc-950"
+                className="mt-4 text-[32px] leading-[1.05] sm:text-5xl font-semibold tracking-tight text-zinc-950"
               >
-                <span className="text-zinc-950">Marketing</span>{" "}
+                Marketing{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 >
                   premium
                 </span>{" "}
-                <span className="text-zinc-950">para</span>{" "}
+                para{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent2}, ${BRAND.accent})` }}
                 >
                   gerar leads
                 </span>{" "}
-                <span className="text-zinc-950">com</span>{" "}
+                com{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
@@ -241,29 +280,47 @@ export default function Page() {
                 .
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg max-w-2xl">
+              <motion.p variants={fadeUp} className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg">
                 A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação.
                 Tudo pensado para gerar leads qualificados e escala.
               </motion.p>
 
-              <motion.p variants={fadeUp} className="mt-3 text-[11px] text-zinc-500">
+              {/* Micro prova */}
+              <motion.div variants={fadeUp} className="mt-4 grid gap-2 sm:grid-cols-3">
+                {[
+                  { t: "⚡ Rápido", d: "Campanha no ar sem novela" },
+                  { t: "🎯 Alinhado", d: "Copy + criativo + oferta" },
+                  { t: "📈 Evolui", d: "Otimização semanal" },
+                ].map((x) => (
+                  <div
+                    key={x.t}
+                    className="rounded-2xl border border-zinc-200/70 bg-white/65 px-4 py-3 backdrop-blur"
+                  >
+                    <p className="text-sm font-semibold text-zinc-950">{x.t}</p>
+                    <p className="mt-1 text-[12px] text-zinc-600">{x.d}</p>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.p variants={fadeUp} className="mt-4 text-[11px] text-zinc-500">
                 Sem spam • resposta rápida • direto ao ponto
               </motion.p>
-            </motion.div>
+            </div>
 
-            <motion.div initial="hidden" animate="visible" variants={fadeUp} className="self-start">
+            {/* Foto */}
+            <motion.div variants={fadeUp} className="lg:mt-1">
               <HeroPortrait />
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Linha 2: BOTÕES em uma faixa (fica “nova coluna/linha” visualmente) */}
+          {/* CTA faixa (desktop/tablet). No mobile vai ter barra fixa */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur shadow-sm"
+            className="mt-6 hidden sm:block rounded-2xl border border-zinc-200/70 bg-white/70 p-4 backdrop-blur shadow-sm"
           >
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex gap-3">
               <a
                 href="#contato"
                 className="flex-1 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
@@ -271,7 +328,6 @@ export default function Page() {
               >
                 Quero diagnóstico
               </a>
-
               <a
                 href="#servicos"
                 className="flex-1 inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
@@ -281,43 +337,21 @@ export default function Page() {
             </div>
           </motion.div>
 
-          {/* Linha 3: benefícios FULL WIDTH */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={fadeUp}
-            className="mt-5 rounded-2xl border border-zinc-200 bg-white/70 p-5 backdrop-blur"
-          >
-            <div className="grid gap-3 sm:grid-cols-3 text-sm text-zinc-700">
-              <div className="rounded-xl border border-zinc-200 bg-white p-4">
-                <p className="font-semibold text-zinc-950">⚡ Implementação rápida</p>
-                <p className="mt-1 text-zinc-600">Sem enrolação: funil e campanha no ar com clareza.</p>
-              </div>
-              <div className="rounded-xl border border-zinc-200 bg-white p-4">
-                <p className="font-semibold text-zinc-950">🎯 Mensagem + criativos</p>
-                <p className="mt-1 text-zinc-600">Alinhados à oferta pra atrair lead qualificado.</p>
-              </div>
-              <div className="rounded-xl border border-zinc-200 bg-white p-4">
-                <p className="font-semibold text-zinc-950">📈 Otimização contínua</p>
-                <p className="mt-1 text-zinc-600">Pra baixar CPL e subir qualidade com consistência.</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Form */}
+          {/* Form (primeiro bloco de conversão) */}
           <motion.div
             id="contato"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
             variants={fadeUp}
-            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-[0_22px_70px_-45px_rgba(0,0,0,0.22)] backdrop-blur"
+            className="mt-7 rounded-2xl border border-zinc-200/70 bg-white/70 p-5 sm:p-6 shadow-[0_26px_90px_-60px_rgba(0,0,0,0.28)] backdrop-blur"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-zinc-950">Diagnóstico em 2 minutos</p>
-                <p className="mt-1 text-sm text-zinc-600">A gente te chama no WhatsApp com próximos passos claros.</p>
+                <p className="mt-1 text-sm text-zinc-600">
+                  A gente te chama no WhatsApp com próximos passos claros.
+                </p>
               </div>
               <div
                 className="h-10 w-10 rounded-xl"
@@ -377,7 +411,7 @@ export default function Page() {
             {hasWhatsApp ? (
               <div className="mt-4">
                 <Link
-                  href={waLink()}
+                  href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
@@ -433,7 +467,7 @@ export default function Page() {
           >
             {steps.map((st, idx) => (
               <motion.div key={st.title} variants={fadeUp}>
-                <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur">
+                <div className="rounded-2xl border border-zinc-200/70 bg-white/70 p-5 shadow-sm backdrop-blur">
                   <p className="text-xs font-semibold tracking-widest text-zinc-500 uppercase">Passo {idx + 1}</p>
                   <p className="mt-2 font-semibold text-zinc-950">{st.title}</p>
                   <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{st.desc}</p>
@@ -472,56 +506,6 @@ export default function Page() {
           </motion.div>
         </section>
 
-        {/* Sobre */}
-        <section id="sobre" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
-            <SectionTitle
-              eyebrow="Sobre"
-              title="Quem está por trás da Fúcsia"
-              subtitle="Autoridade e confiança: essencial pra converter tráfego pago."
-            />
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="mt-8 rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-sm backdrop-blur"
-          >
-            <div className="grid gap-6 lg:grid-cols-[220px_1fr] lg:items-center">
-              <div className="relative w-full max-w-[220px]">
-                <div className="relative aspect-[9/16] w-full">
-                  <div
-                    className="absolute inset-0 -z-10"
-                    style={{
-                      background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.16), transparent 62%)",
-                    }}
-                  />
-                  <Image
-                    src="/socia.png"
-                    alt="Sócia da Fúcsia"
-                    fill
-                    className="object-contain select-none"
-                    style={{
-                      mixBlendMode: "multiply",
-                      filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.16))",
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <p className="text-sm font-semibold text-zinc-950">Giovanna Duarte • Estratégia & Performance</p>
-                <p className="mt-2 text-zinc-600 leading-relaxed">
-                  Profissional do mercado há <span className="font-semibold text-zinc-950">mais de 6 anos</span>, atuando com
-                  tráfego pago, estratégia, copy e criativos focados em conversão.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
         {/* FAQ */}
         <section id="faq" className="mx-auto max-w-6xl px-4 py-12">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
@@ -539,7 +523,7 @@ export default function Page() {
               <motion.details
                 key={f.q}
                 variants={fadeUp}
-                className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur"
+                className="rounded-2xl border border-zinc-200/70 bg-white/70 p-5 shadow-sm backdrop-blur"
               >
                 <summary className="cursor-pointer font-semibold text-zinc-950">{f.q}</summary>
                 <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{f.a}</p>
@@ -560,6 +544,30 @@ export default function Page() {
           </div>
         </footer>
       </main>
+
+      {/* Barra fixa de CTA no MOBILE (converte MUITO) */}
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-[70] border-t border-zinc-200 bg-white/85 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 py-3 grid grid-cols-2 gap-3">
+          <a
+            href="#contato"
+            className="inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm"
+            style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+          >
+            Diagnóstico
+          </a>
+          <Link
+            href={whatsappHref}
+            target={hasWhatsApp ? "_blank" : undefined}
+            rel={hasWhatsApp ? "noopener noreferrer" : undefined}
+            className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-950"
+          >
+            WhatsApp
+          </Link>
+        </div>
+      </div>
+
+      {/* Espaço pra barra não cobrir conteúdo no mobile */}
+      <div className="sm:hidden h-[76px]" />
     </div>
   );
 }
