@@ -33,7 +33,7 @@ const fade = {
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.10, delayChildren: 0.06 } },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.06 } },
 };
 
 function Pill({ children }: { children: React.ReactNode }) {
@@ -139,17 +139,49 @@ const faqs = [
   },
 ];
 
-function Card({
-  title,
-  desc,
-}: {
-  title: string;
-  desc: string;
-}) {
+function Card({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur transition hover:bg-white">
+    <div className="rounded-2xl bordering border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur transition hover:bg-white">
       <p className="font-semibold text-zinc-950">{title}</p>
       <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{desc}</p>
+    </div>
+  );
+}
+
+function HeroPortrait() {
+  return (
+    <div className="relative w-full max-w-[380px] mx-auto">
+      {/* frame */}
+      <div className="relative overflow-hidden rounded-[28px] border border-zinc-200 bg-white/65 shadow-[0_22px_70px_-35px_rgba(0,0,0,0.35)] backdrop-blur">
+        {/* glow */}
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 35%, rgba(225,29,255,0.25), transparent 65%)",
+          }}
+        />
+        {/* portrait area */}
+        <div className="relative aspect-[9/16] w-full">
+          <Image
+            src="/socia.png"
+            alt="Sócia da Fúcsia"
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
+
+        {/* caption strip */}
+        <div className="p-4 border-t border-zinc-200/70 bg-white/50">
+          <p className="text-sm font-semibold text-zinc-950">
+            +6 anos de mercado
+          </p>
+          <p className="mt-1 text-xs text-zinc-600">
+            Estratégia • Tráfego • Copy • Criativos
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -191,9 +223,6 @@ export default function Page() {
             <a href="#cases" className="hover:text-zinc-950">
               Cases
             </a>
-            <a href="#sobre" className="hover:text-zinc-950">
-              Sobre
-            </a>
             <a href="#faq" className="hover:text-zinc-950">
               FAQ
             </a>
@@ -224,10 +253,16 @@ export default function Page() {
       </header>
 
       <main>
-        {/* HERO */}
+        {/* HERO (Texto + Foto vertical + Form) */}
         <section className="mx-auto max-w-6xl px-4 pt-12 pb-10 sm:pt-16">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <motion.div initial="hidden" animate="visible" variants={stagger}>
+          <div className="grid gap-10 lg:grid-cols-3 lg:items-start">
+            {/* Col 1-2: Texto */}
+            <motion.div
+              className="lg:col-span-2"
+              initial="hidden"
+              animate="visible"
+              variants={stagger}
+            >
               <motion.div variants={fadeUp}>
                 <Pill>Full service • performance de verdade</Pill>
               </motion.div>
@@ -250,13 +285,16 @@ export default function Page() {
 
               <motion.p
                 variants={fadeUp}
-                className="mt-4 text-zinc-600 leading-relaxed text-base sm:text-lg"
+                className="mt-4 text-zinc-600 leading-relaxed text-base sm:text-lg max-w-2xl"
               >
                 A Fúcsia cuida do funil completo: estratégia → tráfego → criativos →
                 copy → captação. Tudo pensado para gerar leads qualificados e escala.
               </motion.p>
 
-              <motion.ul variants={fadeUp} className="mt-6 space-y-2 text-sm text-zinc-700">
+              <motion.ul
+                variants={fadeUp}
+                className="mt-6 space-y-2 text-sm text-zinc-700 max-w-2xl"
+              >
                 <li className="flex gap-2">
                   <span className="mt-0.5">⚡</span>
                   <span>Implementação rápida (sem enrolação)</span>
@@ -271,7 +309,10 @@ export default function Page() {
                 </li>
               </motion.ul>
 
-              <motion.div variants={fadeUp} className="mt-8 flex flex-col sm:flex-row gap-3">
+              <motion.div
+                variants={fadeUp}
+                className="mt-8 flex flex-col sm:flex-row gap-3"
+              >
                 {hasWhatsApp ? (
                   <Link
                     href={waLink()}
@@ -305,99 +346,115 @@ export default function Page() {
               </motion.p>
             </motion.div>
 
-            {/* FORM PREMIUM */}
-            <motion.div
-              id="contato"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.35 }}
-              variants={fadeUp}
-              className="rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-[0_22px_70px_-35px_rgba(0,0,0,0.28)] backdrop-blur"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-zinc-950">
-                    Peça um diagnóstico em 2 minutos
-                  </p>
-                  <p className="mt-1 text-sm text-zinc-600">
-                    A gente te chama no WhatsApp com próximos passos claros.
-                  </p>
-                </div>
-                <div
-                  className="h-10 w-10 rounded-xl"
-                  style={{
-                    background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
-                  }}
-                />
-              </div>
+            {/* Col 3: Foto + Form (stack) */}
+            <div className="lg:col-span-1 space-y-6">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+              >
+                <HeroPortrait />
+              </motion.div>
 
-              <form action="/api/lead" method="POST" className="mt-6 space-y-3">
-                <div>
-                  <label className="text-xs font-medium text-zinc-700">Nome</label>
-                  <input
-                    name="name"
-                    required
-                    className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                    placeholder="Seu nome"
+              <motion.div
+                id="contato"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.35 }}
+                variants={fadeUp}
+                className="rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-[0_22px_70px_-35px_rgba(0,0,0,0.28)] backdrop-blur"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-950">
+                      Diagnóstico em 2 minutos
+                    </p>
+                    <p className="mt-1 text-sm text-zinc-600">
+                      A gente te chama no WhatsApp com próximos passos claros.
+                    </p>
+                  </div>
+                  <div
+                    className="h-10 w-10 rounded-xl"
+                    style={{
+                      background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
+                    }}
                   />
                 </div>
 
-                <div>
-                  <label className="text-xs font-medium text-zinc-700">WhatsApp</label>
-                  <input
-                    name="whatsapp"
-                    required
-                    className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                    placeholder="(xx) xxxxx-xxxx"
-                  />
-                </div>
+                <form action="/api/lead" method="POST" className="mt-6 space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-zinc-700">
+                      Nome
+                    </label>
+                    <input
+                      name="name"
+                      required
+                      className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      placeholder="Seu nome"
+                    />
+                  </div>
 
-                <div>
-                  <label className="text-xs font-medium text-zinc-700">Objetivo</label>
-                  <select
-                    name="goal"
-                    className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                    defaultValue="Leads"
+                  <div>
+                    <label className="text-xs font-medium text-zinc-700">
+                      WhatsApp
+                    </label>
+                    <input
+                      name="whatsapp"
+                      required
+                      className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      placeholder="(xx) xxxxx-xxxx"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-medium text-zinc-700">
+                      Objetivo
+                    </label>
+                    <select
+                      name="goal"
+                      className="mt-1 w-full rounded-xl border border-zinc-200 bg-white/80 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      defaultValue="Leads"
+                    >
+                      <option>Leads</option>
+                      <option>Vendas</option>
+                      <option>Agenda cheia</option>
+                      <option>Escalar campanhas</option>
+                      <option>Reposicionar oferta</option>
+                    </select>
+                  </div>
+
+                  <button
+                    className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                    }}
                   >
-                    <option>Leads</option>
-                    <option>Vendas</option>
-                    <option>Agenda cheia</option>
-                    <option>Escalar campanhas</option>
-                    <option>Reposicionar oferta</option>
-                  </select>
-                </div>
+                    Enviar e receber plano rápido
+                  </button>
 
-                <button
-                  className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                  }}
-                >
-                  Enviar e receber plano rápido
-                </button>
+                  <p className="text-xs text-zinc-500">
+                    Ao enviar, você concorda em receber contato pelo WhatsApp.
+                  </p>
+                </form>
 
-                <p className="text-xs text-zinc-500">
-                  Ao enviar, você concorda em receber contato pelo WhatsApp.
-                </p>
-              </form>
-
-              {hasWhatsApp ? (
-                <div className="mt-4">
-                  <Link
-                    href={waLink()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center rounded-xl border border-zinc-200 bg-white/70 px-4 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
-                  >
-                    Prefiro chamar no WhatsApp agora →
-                  </Link>
-                </div>
-              ) : null}
-            </motion.div>
+                {hasWhatsApp ? (
+                  <div className="mt-4">
+                    <Link
+                      href={waLink()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center rounded-xl border border-zinc-200 bg-white/70 px-4 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
+                    >
+                      Prefiro chamar no WhatsApp agora →
+                    </Link>
+                  </div>
+                ) : null}
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* “Pra quem é” (barra de prova) */}
+        {/* “Pra quem é” */}
         <section className="mx-auto max-w-6xl px-4 pb-10">
           <motion.div
             initial="hidden"
@@ -497,21 +554,15 @@ export default function Page() {
             variants={stagger}
           >
             {[
-              {
-                t: "Campanha + landing + WhatsApp",
-                d: "Estrutura enxuta pra captação e triagem de leads (sem fricção).",
-              },
-              {
-                t: "Criativos de performance",
-                d: "Rotina de vídeos curtos com ganchos, prova e CTA pra escalar testes.",
-              },
-              {
-                t: "Otimização semanal",
-                d: "Ajustes contínuos de público, criativo e página pra melhorar CPL e qualidade.",
-              },
+              { t: "Campanha + landing + WhatsApp", d: "Estrutura enxuta pra captação e triagem de leads (sem fricção)." },
+              { t: "Criativos de performance", d: "Rotina de vídeos curtos com ganchos, prova e CTA pra escalar testes." },
+              { t: "Otimização semanal", d: "Ajustes contínuos de público, criativo e página pra melhorar CPL e qualidade." },
             ].map((c) => (
               <motion.div key={c.t} variants={fadeUp}>
-                <Card title={c.t} desc={c.d} />
+                <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur">
+                  <p className="font-semibold text-zinc-950">{c.t}</p>
+                  <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{c.d}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -551,7 +602,7 @@ export default function Page() {
           </motion.div>
         </section>
 
-        {/* Sobre / Sócia */}
+        {/* Sobre */}
         <section id="sobre" className="mx-auto max-w-6xl px-4 py-12">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={fadeUp}>
             <SectionTitle
@@ -569,14 +620,23 @@ export default function Page() {
             className="mt-8 rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-sm backdrop-blur"
           >
             <div className="grid gap-6 lg:grid-cols-[220px_1fr] lg:items-center">
-              <div className="relative h-[220px] w-[220px] overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-100">
-                <Image
-                  src="/socia.jpg"
-                  alt="Sócia da Fúcsia"
-                  fill
-                  className="object-cover"
-                  priority
+              {/* Glow + PNG sem fundo */}
+              <div className="relative h-[260px] w-[220px] rounded-2xl border border-zinc-200 bg-white/60 backdrop-blur">
+                <div
+                  className="absolute inset-0 -z-10 rounded-2xl"
+                  style={{
+                    background:
+                      "radial-gradient(circle at center, rgba(225,29,255,0.25), transparent 65%)",
+                  }}
                 />
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/socia.png"
+                    alt="Sócia da Fúcsia"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
 
               <div>
