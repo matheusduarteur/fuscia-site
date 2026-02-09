@@ -8,7 +8,7 @@ const BRAND = {
   name: "Fúcsia",
   accent: "#E11DFF",
   accent2: "#7C3AED",
-  dark: "#0B0B10",
+  dark: "#0B0B10"
 };
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
@@ -23,26 +23,23 @@ function waLink() {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" }
 };
 
 const fade = {
   hidden: { opacity: 0, filter: "blur(10px)" },
-  visible: { opacity: 1, filter: "blur(0px)" },
+  visible: { opacity: 1, filter: "blur(0px)" }
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } }
 };
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-zinc-200 backdrop-blur">
-      <span
-        className="h-2 w-2 rounded-full"
-        style={{ backgroundColor: BRAND.accent }}
-      />
+      <span className="h-2 w-2 rounded-full" style={{ backgroundColor: BRAND.accent }} />
       {children}
     </span>
   );
@@ -51,7 +48,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 function SectionTitle({
   eyebrow,
   title,
-  subtitle,
+  subtitle
 }: {
   eyebrow?: string;
   title: string;
@@ -60,16 +57,10 @@ function SectionTitle({
   return (
     <div className="max-w-2xl">
       {eyebrow ? (
-        <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">
-          {eyebrow}
-        </p>
+        <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-white">
-        {title}
-      </h2>
-      {subtitle ? (
-        <p className="mt-3 text-zinc-300 leading-relaxed">{subtitle}</p>
-      ) : null}
+      <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-white">{title}</h2>
+      {subtitle ? <p className="mt-3 text-zinc-300 leading-relaxed">{subtitle}</p> : null}
     </div>
   );
 }
@@ -77,72 +68,72 @@ function SectionTitle({
 const services = [
   {
     title: "Tráfego pago",
-    desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado.",
+    desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado."
   },
   {
     title: "Social media",
-    desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego.",
+    desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego."
   },
   {
     title: "Copy",
-    desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta.",
+    desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta."
   },
   {
     title: "Estratégia",
-    desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte.",
+    desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte."
   },
   {
     title: "Captação de leads",
-    desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade.",
+    desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade."
   },
   {
     title: "Vídeo (gravação/edição)",
-    desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação.",
-  },
+    desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação."
+  }
 ];
 
 const steps = [
   {
     title: "Diagnóstico rápido",
-    desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer.",
+    desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer."
   },
   {
     title: "Plano + execução",
-    desc: "Criativos + landing + tracking + campanha no ar com velocidade.",
+    desc: "Criativos + landing + tracking + campanha no ar com velocidade."
   },
   {
     title: "Otimização semanal",
-    desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead.",
-  },
+    desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead."
+  }
 ];
 
 const faqs = [
   {
     q: "Vocês trabalham com qual tipo de negócio?",
-    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real.",
+    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real."
   },
   {
     q: "Preciso ter site pronto?",
-    a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago.",
+    a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago."
   },
   {
     q: "Qual o prazo pra começar?",
-    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
+    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking."
   },
   {
     q: "Vocês fazem só tráfego?",
-    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos.",
+    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos."
   },
   {
     q: "Como funciona o primeiro contato?",
-    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo.",
-  },
+    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo."
+  }
 ];
 
 function GlassCard({
   title,
   desc,
-  icon,
+  icon
 }: {
   title: string;
   desc: string;
@@ -159,51 +150,49 @@ function GlassCard({
   );
 }
 
+/**
+ * Foto integrada (sem card/caixa)
+ * - PNG transparente
+ * - glow suave atrás
+ * - sombra (drop-shadow) para dar “presença”
+ * - gradiente do lado esquerdo para fundir com o fundo
+ */
 function HeroPortrait() {
   return (
     <div className="relative w-full">
-      <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-white/5 shadow-[0_26px_80px_-45px_rgba(0,0,0,0.85)] backdrop-blur">
+      <div className="relative aspect-[9/16] w-full">
         <div
           className="absolute inset-0 -z-10"
           style={{
-            background:
-              "radial-gradient(circle at 50% 35%, rgba(225,29,255,0.28), transparent 65%)",
+            background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)"
           }}
         />
-        <div className="relative aspect-[9/16] w-full">
-          <Image
-            src="/socia.png"
-            alt="Sócia da Fúcsia"
-            fill
-            priority
-            className="object-contain"
-          />
-        </div>
-        <div className="p-3 border-t border-white/10 bg-white/5">
-          <p className="text-xs font-semibold text-white">+6 anos de mercado</p>
-          <p className="mt-1 text-[11px] text-zinc-300">
-            Estratégia • Tráfego • Copy • Criativos
-          </p>
-        </div>
+
+        <Image
+          src="/socia.png"
+          alt="Sócia da Fúcsia"
+          fill
+          priority
+          className="object-contain"
+          style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.55))" }}
+        />
+
+        {/* fusão com o fundo (some com “recorte duro”) */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#111318]" />
+      </div>
+
+      <div className="mt-2">
+        <p className="text-xs font-semibold text-white">+6 anos de mercado</p>
+        <p className="mt-1 text-[11px] text-zinc-300">Estratégia • Tráfego • Copy • Criativos</p>
       </div>
     </div>
   );
 }
 
-function Metric({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string;
-  hint: string;
-}) {
+function Metric({ label, value, hint }: { label: string; value: string; hint: string }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-      <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">
-        {label}
-      </p>
+      <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">{label}</p>
       <p className="mt-2 text-2xl font-semibold text-white">{value}</p>
       <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{hint}</p>
     </div>
@@ -218,11 +207,12 @@ export default function Page() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 22 });
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: BRAND.dark }}>
-      {/* Premium background */}
+    <div className="min-h-screen text-white" style={{ backgroundColor: "#111318" }}>
+      {/* Premium background (grafite) */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(1200px_700px_at_20%_10%,rgba(225,29,255,0.18),transparent_55%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.12),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(900px_600px_at_50%_110%,rgba(255,255,255,0.06),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(1100px_700px_at_20%_10%,rgba(225,29,255,0.16),transparent_58%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.10),transparent_62%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(900px_700px_at_50%_120%,rgba(255,255,255,0.08),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(17,19,24,0.65),rgba(17,19,24,1))]" />
       </div>
 
       {/* Progress bar */}
@@ -230,7 +220,7 @@ export default function Page() {
         className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left"
         style={{
           scaleX,
-          background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+          background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`
         }}
       />
 
@@ -253,7 +243,7 @@ export default function Page() {
             <div
               className="h-9 w-9 rounded-xl shadow-sm"
               style={{
-                background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
+                background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`
               }}
             />
             <div className="leading-tight">
@@ -282,21 +272,17 @@ export default function Page() {
               <Link
                 href={waLink()}
                 className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
+                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Chamar no WhatsApp
+                Pedir diagnóstico
               </Link>
             ) : (
               <a
                 href="#contato"
                 className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
+                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
               >
                 Pedir diagnóstico
               </a>
@@ -306,17 +292,11 @@ export default function Page() {
       </header>
 
       <main>
-        {/* HERO */}
+        {/* HERO (mobile: texto + foto lado a lado na primeira dobra) */}
         <section className="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:pt-16">
-          {/* MOBILE: texto + foto lado a lado logo de cara */}
-          <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_148px] sm:grid-cols-[1fr_188px] lg:grid-cols-3 lg:items-start">
+          <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_210px] lg:grid-cols-3 lg:items-start">
             {/* Texto */}
-            <motion.div
-              className="lg:col-span-2"
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-            >
+            <motion.div className="lg:col-span-2" initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
                 <Pill>Full service • performance de verdade</Pill>
               </motion.div>
@@ -329,7 +309,7 @@ export default function Page() {
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`
                   }}
                 >
                   premium
@@ -337,18 +317,12 @@ export default function Page() {
                 com foco total em conversão.
               </motion.h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="mt-3 text-zinc-300 leading-relaxed text-sm sm:text-lg max-w-2xl"
-              >
-                A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação.
-                Tudo pensado para gerar leads qualificados e escala.
+              <motion.p variants={fadeUp} className="mt-3 text-zinc-300 leading-relaxed text-sm sm:text-lg max-w-2xl">
+                A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação. Tudo pensado para
+                gerar leads qualificados e escala.
               </motion.p>
 
-              <motion.ul
-                variants={fadeUp}
-                className="mt-4 space-y-2 text-xs sm:text-sm text-zinc-200 max-w-2xl"
-              >
+              <motion.ul variants={fadeUp} className="mt-4 space-y-2 text-xs sm:text-sm text-zinc-200 max-w-2xl">
                 <li className="flex gap-2">
                   <span className="mt-0.5">⚡</span>
                   <span>Implementação rápida (sem enrolação)</span>
@@ -363,17 +337,12 @@ export default function Page() {
                 </li>
               </motion.ul>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-6 flex flex-col sm:flex-row gap-3"
-              >
+              <motion.div variants={fadeUp} className="mt-6 flex flex-col sm:flex-row gap-3">
                 {hasWhatsApp ? (
                   <Link
                     href={waLink()}
                     className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                    }}
+                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -383,9 +352,7 @@ export default function Page() {
                   <a
                     href="#contato"
                     className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                    }}
+                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                   >
                     Quero diagnóstico
                   </a>
@@ -404,39 +371,30 @@ export default function Page() {
               </motion.p>
             </motion.div>
 
-            {/* Foto vertical (story) — aparece na primeira dobra no mobile */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="self-start"
-            >
+            {/* Foto (sem caixa) */}
+            <motion.div initial="hidden" animate="visible" variants={fadeUp} className="self-start">
               <HeroPortrait />
             </motion.div>
 
-            {/* Form abaixo no mobile (mas ainda na primeira tela em muitos celulares) */}
+            {/* Form */}
             <motion.div
               id="contato"
               className="col-span-2 lg:col-span-1"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
             >
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 shadow-[0_22px_70px_-45px_rgba(0,0,0,0.85)] backdrop-blur">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-semibold text-white">
-                      Diagnóstico em 2 minutos
-                    </p>
-                    <p className="mt-1 text-sm text-zinc-300">
-                      A gente te chama no WhatsApp com próximos passos claros.
-                    </p>
+                    <p className="text-sm font-semibold text-white">Diagnóstico em 2 minutos</p>
+                    <p className="mt-1 text-sm text-zinc-300">A gente te chama no WhatsApp com próximos passos claros.</p>
                   </div>
                   <div
                     className="h-10 w-10 rounded-xl"
                     style={{
-                      background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
+                      background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`
                     }}
                   />
                 </div>
@@ -479,16 +437,12 @@ export default function Page() {
 
                   <button
                     className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                    }}
+                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                   >
                     Enviar e receber plano rápido
                   </button>
 
-                  <p className="text-[11px] text-zinc-400">
-                    Ao enviar, você concorda em receber contato pelo WhatsApp.
-                  </p>
+                  <p className="text-[11px] text-zinc-400">Ao enviar, você concorda em receber contato pelo WhatsApp.</p>
                 </form>
 
                 {hasWhatsApp ? (
@@ -508,12 +462,12 @@ export default function Page() {
           </div>
         </section>
 
-        {/* PROVA RÁPIDA (metrics / diferenciais) */}
+        {/* Métricas / prova rápida */}
         <section className="mx-auto max-w-6xl px-4 pb-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={stagger}
             className="grid gap-4 lg:grid-cols-3"
           >
@@ -528,7 +482,7 @@ export default function Page() {
               <Metric
                 label="Velocidade"
                 value="Implementação rápida"
-                hint="Do diagnóstico ao funil no ar com consistência (sem “projetinho eterno”)."
+                hint="Do diagnóstico ao funil no ar com consistência (sem ‘projetinho eterno’)."
               />
             </motion.div>
             <motion.div variants={fadeUp}>
@@ -543,12 +497,7 @@ export default function Page() {
 
         {/* Serviços */}
         <section id="servicos" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Serviços"
               title="Full service de verdade."
@@ -573,12 +522,7 @@ export default function Page() {
 
         {/* Processo */}
         <section id="processo" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Processo"
               title="Simples, rápido e mensurável."
@@ -595,11 +539,7 @@ export default function Page() {
           >
             {steps.map((st, idx) => (
               <motion.div key={st.title} variants={fadeUp}>
-                <GlassCard
-                  icon={String(idx + 1)}
-                  title={st.title}
-                  desc={st.desc}
-                />
+                <GlassCard icon={String(idx + 1)} title={st.title} desc={st.desc} />
               </motion.div>
             ))}
           </motion.div>
@@ -607,16 +547,11 @@ export default function Page() {
 
         {/* Cases */}
         <section id="cases" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Prova"
               title="Entrega com cara de escala."
-              subtitle="Se você já tiver números/prints, eu troco esses exemplos por cases reais com design editorial."
+              subtitle="Se você tiver números/prints, eu adapto esses blocos para cases reais (CPL, conversão, volume)."
             />
           </motion.div>
 
@@ -655,12 +590,8 @@ export default function Page() {
             className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           >
             <div>
-              <p className="font-semibold text-white">
-                Quer ver se faz sentido pro seu caso?
-              </p>
-              <p className="mt-1 text-sm text-zinc-300">
-                Me diga seu nicho e sua meta. Eu respondo com próximos passos.
-              </p>
+              <p className="font-semibold text-white">Quer ver se faz sentido pro seu caso?</p>
+              <p className="mt-1 text-sm text-zinc-300">Me diga seu nicho e sua meta. Eu respondo com próximos passos.</p>
             </div>
             {hasWhatsApp ? (
               <Link
@@ -668,9 +599,7 @@ export default function Page() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
+                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
               >
                 Chamar no WhatsApp
               </Link>
@@ -678,9 +607,7 @@ export default function Page() {
               <a
                 href="#contato"
                 className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
+                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
               >
                 Pedir diagnóstico
               </a>
@@ -688,19 +615,10 @@ export default function Page() {
           </motion.div>
         </section>
 
-        {/* Sobre */}
+        {/* Sobre (mantém, mas sem “caixa de foto”: usamos o mesmo estilo) */}
         <section id="sobre" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-          >
-            <SectionTitle
-              eyebrow="Sobre"
-              title="Quem está por trás da Fúcsia"
-              subtitle="Autoridade e confiança: essencial pra converter tráfego pago."
-            />
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
+            <SectionTitle eyebrow="Sobre" title="Quem está por trás da Fúcsia" subtitle="Autoridade e confiança: essencial pra converter tráfego pago." />
           </motion.div>
 
           <motion.div
@@ -711,47 +629,40 @@ export default function Page() {
             className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 shadow-[0_20px_70px_-50px_rgba(0,0,0,0.9)] backdrop-blur"
           >
             <div className="grid gap-6 lg:grid-cols-[220px_1fr] lg:items-center">
-              <div className="relative h-[320px] w-[220px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur overflow-hidden">
-                <div
-                  className="absolute inset-0 -z-10"
-                  style={{
-                    background:
-                      "radial-gradient(circle at center, rgba(225,29,255,0.25), transparent 65%)",
-                  }}
-                />
-                <div className="relative h-full w-full">
+              <div className="relative w-full max-w-[220px]">
+                <div className="relative aspect-[9/16] w-full">
+                  <div
+                    className="absolute inset-0 -z-10"
+                    style={{
+                      background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)"
+                    }}
+                  />
                   <Image
                     src="/socia.png"
                     alt="Sócia da Fúcsia"
                     fill
                     className="object-contain"
+                    style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.55))" }}
                   />
                 </div>
               </div>
 
               <div>
-                <p className="text-sm font-semibold text-white">
-                  Sócia • Estratégia & Performance
-                </p>
-
+                <p className="text-sm font-semibold text-white">Sócia • Estratégia & Performance</p>
                 <p className="mt-2 text-zinc-300 leading-relaxed">
-                  Profissional do mercado há{" "}
-                  <span className="font-semibold text-white">mais de 6 anos</span>,
-                  atuando com tráfego pago, estratégia, copy e criativos focados em conversão.
-                  O objetivo é simples: transformar atenção em demanda real.
+                  Profissional do mercado há <span className="font-semibold text-white">mais de 6 anos</span>, atuando com tráfego pago,
+                  estratégia, copy e criativos focados em conversão. O objetivo é simples: transformar atenção em demanda real.
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {["+6 anos no ramo", "Tráfego & escala", "Copy & criativos", "Full service"].map(
-                    (tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur"
-                      >
-                        {tag}
-                      </span>
-                    )
-                  )}
+                  {["+6 anos no ramo", "Tráfego & escala", "Copy & criativos", "Full service"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
                 <div className="mt-6">
@@ -761,9 +672,7 @@ export default function Page() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                      style={{
-                        backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                      }}
+                      style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                     >
                       Falar com a Fúcsia no WhatsApp
                     </Link>
@@ -771,9 +680,7 @@ export default function Page() {
                     <a
                       href="#contato"
                       className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                      style={{
-                        backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                      }}
+                      style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                     >
                       Pedir diagnóstico
                     </a>
@@ -786,12 +693,7 @@ export default function Page() {
 
         {/* FAQ */}
         <section id="faq" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle eyebrow="FAQ" title="Objeções comuns (respondidas)." />
           </motion.div>
 
@@ -808,12 +710,8 @@ export default function Page() {
                 variants={fadeUp}
                 className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-sm backdrop-blur"
               >
-                <summary className="cursor-pointer font-semibold text-white">
-                  {f.q}
-                </summary>
-                <p className="mt-2 text-sm text-zinc-300 leading-relaxed">
-                  {f.a}
-                </p>
+                <summary className="cursor-pointer font-semibold text-white">{f.q}</summary>
+                <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{f.a}</p>
               </motion.details>
             ))}
           </motion.div>
@@ -826,9 +724,7 @@ export default function Page() {
               <p>
                 © {new Date().getFullYear()} {BRAND.name}. Todos os direitos reservados.
               </p>
-              <p className="text-xs">
-                Next.js + Vercel • Tema Fúcsia • LGPD: coletamos apenas dados para contato.
-              </p>
+              <p className="text-xs">Next.js + Vercel • Tema Fúcsia • LGPD: coletamos apenas dados para contato.</p>
             </div>
           </div>
         </footer>
