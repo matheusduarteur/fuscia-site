@@ -512,7 +512,7 @@ export default function Page() {
               </div>
 
               <div>
-                <p className="text-sm font-semibold text-zinc-950">Sócia • Estratégia & Performance</p>
+                <p className="text-sm font-semibold text-zinc-950">Giovanna Duarte • Estratégia & Performance</p>
                 <p className="mt-2 text-zinc-600 leading-relaxed">
                   Profissional do mercado há <span className="font-semibold text-zinc-950">mais de 6 anos</span>, atuando com
                   tráfego pago, estratégia, copy e criativos focados em conversão.
