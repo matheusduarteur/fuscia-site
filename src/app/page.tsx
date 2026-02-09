@@ -66,68 +66,26 @@ function SectionTitle({
 }
 
 const services = [
-  {
-    title: "Tráfego pago",
-    desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado.",
-  },
-  {
-    title: "Social media",
-    desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego.",
-  },
-  {
-    title: "Copy",
-    desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta.",
-  },
-  {
-    title: "Estratégia",
-    desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte.",
-  },
-  {
-    title: "Captação de leads",
-    desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade.",
-  },
-  {
-    title: "Vídeo (gravação/edição)",
-    desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação.",
-  },
+  { title: "Tráfego pago", desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado." },
+  { title: "Social media", desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego." },
+  { title: "Copy", desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta." },
+  { title: "Estratégia", desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte." },
+  { title: "Captação de leads", desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade." },
+  { title: "Vídeo (gravação/edição)", desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação." },
 ];
 
 const steps = [
-  {
-    title: "Diagnóstico rápido",
-    desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer.",
-  },
-  {
-    title: "Plano + execução",
-    desc: "Criativos + landing + tracking + campanha no ar com velocidade.",
-  },
-  {
-    title: "Otimização semanal",
-    desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead.",
-  },
+  { title: "Diagnóstico rápido", desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer." },
+  { title: "Plano + execução", desc: "Criativos + landing + tracking + campanha no ar com velocidade." },
+  { title: "Otimização semanal", desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead." },
 ];
 
 const faqs = [
-  {
-    q: "Vocês trabalham com qual tipo de negócio?",
-    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real.",
-  },
-  {
-    q: "Preciso ter site pronto?",
-    a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago.",
-  },
-  {
-    q: "Qual o prazo pra começar?",
-    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
-  },
-  {
-    q: "Vocês fazem só tráfego?",
-    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos.",
-  },
-  {
-    q: "Como funciona o primeiro contato?",
-    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo.",
-  },
+  { q: "Vocês trabalham com qual tipo de negócio?", a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real." },
+  { q: "Preciso ter site pronto?", a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago." },
+  { q: "Qual o prazo pra começar?", a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking." },
+  { q: "Vocês fazem só tráfego?", a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos." },
+  { q: "Como funciona o primeiro contato?", a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo." },
 ];
 
 function GlassCard({ title, desc }: { title: string; desc: string }) {
@@ -140,10 +98,9 @@ function GlassCard({ title, desc }: { title: string; desc: string }) {
 }
 
 /**
- * Foto integrada (sem caixa)
- * - PNG transparente
- * - glow suave fúcsia atrás
- * - drop-shadow pra “colar” no layout
+ * FOTO SEM “FUNDO”
+ * - Removemos o overlay que parecia um retângulo
+ * - Mantemos glow leve + drop-shadow pra dar presença
  */
 function HeroPortrait() {
   return (
@@ -152,8 +109,7 @@ function HeroPortrait() {
         <div
           className="absolute inset-0 -z-10"
           style={{
-            background:
-              "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)",
+            background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.16), transparent 62%)",
           }}
         />
         <Image
@@ -162,10 +118,10 @@ function HeroPortrait() {
           fill
           priority
           className="object-contain"
-          style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.22))" }}
+          style={{
+            filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.18))",
+          }}
         />
-        {/* “fusão” leve com o fundo branco (só pra evitar recorte duro em PNG) */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white" />
       </div>
 
       <div className="mt-2">
@@ -179,19 +135,18 @@ function HeroPortrait() {
 export default function Page() {
   const hasWhatsApp = Boolean(WHATSAPP_NUMBER);
 
-  // Scroll progress bar
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 22 });
 
   return (
     <div className="min-h-screen bg-white text-zinc-900">
-      {/* Premium background (white + fúcsia glow) */}
+      {/* Fundo premium branco */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(1100px_650px_at_18%_10%,rgba(225,29,255,0.16),transparent_55%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.10),transparent_60%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.92),rgba(255,255,255,1))]" />
       </div>
 
-      {/* Progress bar */}
+      {/* Barra progresso */}
       <motion.div
         className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left"
         style={{
@@ -200,7 +155,7 @@ export default function Page() {
         }}
       />
 
-      {/* Floating WhatsApp */}
+      {/* WhatsApp flutuante */}
       {hasWhatsApp ? (
         <Link
           href={waLink()}
@@ -229,44 +184,20 @@ export default function Page() {
           </div>
 
           <nav className="hidden sm:flex items-center gap-6 text-sm text-zinc-600">
-            <a href="#servicos" className="hover:text-zinc-950">
-              Serviços
-            </a>
-            <a href="#processo" className="hover:text-zinc-950">
-              Processo
-            </a>
-            <a href="#cases" className="hover:text-zinc-950">
-              Cases
-            </a>
-            <a href="#faq" className="hover:text-zinc-950">
-              FAQ
-            </a>
+            <a href="#servicos" className="hover:text-zinc-950">Serviços</a>
+            <a href="#processo" className="hover:text-zinc-950">Processo</a>
+            <a href="#cases" className="hover:text-zinc-950">Cases</a>
+            <a href="#faq" className="hover:text-zinc-950">FAQ</a>
           </nav>
 
           <div className="flex items-center gap-2">
-            {hasWhatsApp ? (
-              <Link
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
-              >
-                Pedir diagnóstico
-              </Link>
-            ) : (
-              <a
-                href="#contato"
-                className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                }}
-              >
-                Pedir diagnóstico
-              </a>
-            )}
+            <a
+              href="#contato"
+              className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+              style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+            >
+              Pedir diagnóstico
+            </a>
           </div>
         </div>
       </header>
@@ -274,15 +205,13 @@ export default function Page() {
       <main>
         {/* HERO */}
         <section className="mx-auto max-w-6xl px-4 pt-10 pb-6 sm:pt-16">
-          {/* Linha 1: 2 colunas (texto + foto) */}
+          {/* Linha 1: APENAS Texto + Foto */}
           <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_220px] lg:grid-cols-3 lg:items-start">
-            {/* Texto (col-span 2 no desktop) */}
             <motion.div className="lg:col-span-2" initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
                 <Pill>Full service • performance de verdade</Pill>
               </motion.div>
 
-              {/* Headline mais “colorida” */}
               <motion.h1
                 variants={fadeUp}
                 className="mt-4 text-[30px] leading-tight sm:text-5xl font-semibold tracking-tight text-zinc-950"
@@ -290,92 +219,72 @@ export default function Page() {
                 <span className="text-zinc-950">Marketing</span>{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                  }}
+                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 >
                   premium
                 </span>{" "}
                 <span className="text-zinc-950">para</span>{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent2}, ${BRAND.accent})`,
-                  }}
+                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent2}, ${BRAND.accent})` }}
                 >
                   gerar leads
                 </span>{" "}
                 <span className="text-zinc-950">com</span>{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                  }}
+                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 >
                   conversão real
                 </span>
                 .
               </motion.h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg max-w-2xl"
-              >
+              <motion.p variants={fadeUp} className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg max-w-2xl">
                 A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação.
                 Tudo pensado para gerar leads qualificados e escala.
               </motion.p>
-
-              <motion.div variants={fadeUp} className="mt-5 flex flex-col sm:flex-row gap-3">
-                {hasWhatsApp ? (
-                  <Link
-                    href={waLink()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                    }}
-                  >
-                    Quero diagnóstico
-                  </Link>
-                ) : (
-                  <a
-                    href="#contato"
-                    className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{
-                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                    }}
-                  >
-                    Quero diagnóstico
-                  </a>
-                )}
-
-                <a
-                  href="#servicos"
-                  className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
-                >
-                  Ver serviços
-                </a>
-              </motion.div>
 
               <motion.p variants={fadeUp} className="mt-3 text-[11px] text-zinc-500">
                 Sem spam • resposta rápida • direto ao ponto
               </motion.p>
             </motion.div>
 
-            {/* Foto (2ª coluna / 3ª no desktop) */}
             <motion.div initial="hidden" animate="visible" variants={fadeUp} className="self-start">
               <HeroPortrait />
             </motion.div>
           </div>
 
-          {/* Linha 2: FULL WIDTH (resolve o “lado vazio”) */}
+          {/* Linha 2: Botões FULL WIDTH (como você pediu) */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="mt-6 flex flex-col sm:flex-row gap-3"
+          >
+            <a
+              href="#contato"
+              className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+              style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+            >
+              Quero diagnóstico
+            </a>
+
+            <a
+              href="#servicos"
+              className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
+            >
+              Ver serviços
+            </a>
+          </motion.div>
+
+          {/* Linha 3: benefícios FULL WIDTH (pra não sobrar “lado vazio”) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
             variants={fadeUp}
-            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-5 backdrop-blur"
+            className="mt-5 rounded-2xl border border-zinc-200 bg-white/70 p-5 backdrop-blur"
           >
             <div className="grid gap-3 sm:grid-cols-3 text-sm text-zinc-700">
               <div className="rounded-xl border border-zinc-200 bg-white p-4">
@@ -393,7 +302,7 @@ export default function Page() {
             </div>
           </motion.div>
 
-          {/* Form (abaixo, largura boa) */}
+          {/* Form */}
           <motion.div
             id="contato"
             initial="hidden"
@@ -405,15 +314,11 @@ export default function Page() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-zinc-950">Diagnóstico em 2 minutos</p>
-                <p className="mt-1 text-sm text-zinc-600">
-                  A gente te chama no WhatsApp com próximos passos claros.
-                </p>
+                <p className="mt-1 text-sm text-zinc-600">A gente te chama no WhatsApp com próximos passos claros.</p>
               </div>
               <div
                 className="h-10 w-10 rounded-xl"
-                style={{
-                  background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
-                }}
+                style={{ background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})` }}
               />
             </div>
 
@@ -456,9 +361,7 @@ export default function Page() {
               <div className="sm:col-span-3">
                 <button
                   className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
-                  }}
+                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 >
                   Enviar e receber plano rápido
                 </button>
@@ -589,8 +492,7 @@ export default function Page() {
                   <div
                     className="absolute inset-0 -z-10"
                     style={{
-                      background:
-                        "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)",
+                      background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.16), transparent 62%)",
                     }}
                   />
                   <Image
@@ -598,7 +500,7 @@ export default function Page() {
                     alt="Sócia da Fúcsia"
                     fill
                     className="object-contain"
-                    style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.18))" }}
+                    style={{ filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.16))" }}
                   />
                 </div>
               </div>
@@ -607,42 +509,8 @@ export default function Page() {
                 <p className="text-sm font-semibold text-zinc-950">Sócia • Estratégia & Performance</p>
                 <p className="mt-2 text-zinc-600 leading-relaxed">
                   Profissional do mercado há <span className="font-semibold text-zinc-950">mais de 6 anos</span>, atuando com
-                  tráfego pago, estratégia, copy e criativos focados em conversão. O objetivo é simples: transformar
-                  atenção em demanda real.
+                  tráfego pago, estratégia, copy e criativos focados em conversão.
                 </p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {["+6 anos no ramo", "Tráfego & escala", "Copy & criativos", "Full service"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-6">
-                  {hasWhatsApp ? (
-                    <Link
-                      href={waLink()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                      style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-                    >
-                      Falar com a Fúcsia no WhatsApp
-                    </Link>
-                  ) : (
-                    <a
-                      href="#contato"
-                      className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                      style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-                    >
-                      Pedir diagnóstico
-                    </a>
-                  )}
-                </div>
               </div>
             </div>
           </motion.div>
@@ -681,7 +549,7 @@ export default function Page() {
               <p>
                 © {new Date().getFullYear()} {BRAND.name}. Todos os direitos reservados.
               </p>
-              <p className="text-xs">Next.js + Vercel • Tema Fúcsia • LGPD: coletamos apenas dados para contato.</p>
+              <p className="text-xs">Next.js + Vercel • Tema Fúcsia</p>
             </div>
           </div>
         </footer>
