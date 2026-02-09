@@ -8,7 +8,7 @@ const BRAND = {
   name: "Fúcsia",
   accent: "#E11DFF",
   accent2: "#7C3AED",
-  dark: "#0B0B10"
+  dark: "#0B0B10",
 };
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
@@ -22,23 +22,23 @@ function waLink() {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 18, filter: "blur(10px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+  hidden: { opacity: 0, y: 16, filter: "blur(8px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
 const fade = {
-  hidden: { opacity: 0, filter: "blur(10px)" },
-  visible: { opacity: 1, filter: "blur(0px)" }
+  hidden: { opacity: 0, filter: "blur(8px)" },
+  visible: { opacity: 1, filter: "blur(0px)" },
 };
 
 const stagger = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } }
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 };
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-zinc-200 backdrop-blur">
+    <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur">
       <span className="h-2 w-2 rounded-full" style={{ backgroundColor: BRAND.accent }} />
       {children}
     </span>
@@ -48,7 +48,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 function SectionTitle({
   eyebrow,
   title,
-  subtitle
+  subtitle,
 }: {
   eyebrow?: string;
   title: string;
@@ -57,10 +57,10 @@ function SectionTitle({
   return (
     <div className="max-w-2xl">
       {eyebrow ? (
-        <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">{eyebrow}</p>
+        <p className="text-xs font-semibold tracking-widest text-zinc-500 uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-white">{title}</h2>
-      {subtitle ? <p className="mt-3 text-zinc-300 leading-relaxed">{subtitle}</p> : null}
+      <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-950">{title}</h2>
+      {subtitle ? <p className="mt-3 text-zinc-600 leading-relaxed">{subtitle}</p> : null}
     </div>
   );
 }
@@ -68,94 +68,82 @@ function SectionTitle({
 const services = [
   {
     title: "Tráfego pago",
-    desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado."
+    desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado.",
   },
   {
     title: "Social media",
-    desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego."
+    desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego.",
   },
   {
     title: "Copy",
-    desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta."
+    desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta.",
   },
   {
     title: "Estratégia",
-    desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte."
+    desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte.",
   },
   {
     title: "Captação de leads",
-    desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade."
+    desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade.",
   },
   {
     title: "Vídeo (gravação/edição)",
-    desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação."
-  }
+    desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação.",
+  },
 ];
 
 const steps = [
   {
     title: "Diagnóstico rápido",
-    desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer."
+    desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer.",
   },
   {
     title: "Plano + execução",
-    desc: "Criativos + landing + tracking + campanha no ar com velocidade."
+    desc: "Criativos + landing + tracking + campanha no ar com velocidade.",
   },
   {
     title: "Otimização semanal",
-    desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead."
-  }
+    desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead.",
+  },
 ];
 
 const faqs = [
   {
     q: "Vocês trabalham com qual tipo de negócio?",
-    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real."
+    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real.",
   },
   {
     q: "Preciso ter site pronto?",
-    a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago."
+    a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago.",
   },
   {
     q: "Qual o prazo pra começar?",
-    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking."
+    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
   },
   {
     q: "Vocês fazem só tráfego?",
-    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos."
+    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos.",
   },
   {
     q: "Como funciona o primeiro contato?",
-    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo."
-  }
+    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo.",
+  },
 ];
 
-function GlassCard({
-  title,
-  desc,
-  icon
-}: {
-  title: string;
-  desc: string;
-  icon?: string;
-}) {
+function GlassCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_18px_60px_-40px_rgba(0,0,0,0.8)] backdrop-blur transition hover:bg-white/7">
-      <p className="text-sm font-semibold text-white flex items-center gap-2">
-        {icon ? <span className="text-base">{icon}</span> : null}
-        {title}
-      </p>
-      <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{desc}</p>
+    <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur transition hover:bg-white">
+      <p className="text-sm font-semibold text-zinc-950">{title}</p>
+      <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{desc}</p>
     </div>
   );
 }
 
 /**
- * Foto integrada (sem card/caixa)
+ * Foto integrada (sem caixa)
  * - PNG transparente
- * - glow suave atrás
- * - sombra (drop-shadow) para dar “presença”
- * - gradiente do lado esquerdo para fundir com o fundo
+ * - glow suave fúcsia atrás
+ * - drop-shadow pra “colar” no layout
  */
 function HeroPortrait() {
   return (
@@ -164,37 +152,26 @@ function HeroPortrait() {
         <div
           className="absolute inset-0 -z-10"
           style={{
-            background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)"
+            background:
+              "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)",
           }}
         />
-
         <Image
           src="/socia.png"
           alt="Sócia da Fúcsia"
           fill
           priority
           className="object-contain"
-          style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.55))" }}
+          style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.22))" }}
         />
-
-        {/* fusão com o fundo (some com “recorte duro”) */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#111318]" />
+        {/* “fusão” leve com o fundo branco (só pra evitar recorte duro em PNG) */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white" />
       </div>
 
       <div className="mt-2">
-        <p className="text-xs font-semibold text-white">+6 anos de mercado</p>
-        <p className="mt-1 text-[11px] text-zinc-300">Estratégia • Tráfego • Copy • Criativos</p>
+        <p className="text-xs font-semibold text-zinc-900">+6 anos de mercado</p>
+        <p className="mt-1 text-[11px] text-zinc-600">Estratégia • Tráfego • Copy • Criativos</p>
       </div>
-    </div>
-  );
-}
-
-function Metric({ label, value, hint }: { label: string; value: string; hint: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-      <p className="text-xs font-semibold tracking-widest text-zinc-400 uppercase">{label}</p>
-      <p className="mt-2 text-2xl font-semibold text-white">{value}</p>
-      <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{hint}</p>
     </div>
   );
 }
@@ -207,12 +184,11 @@ export default function Page() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 22 });
 
   return (
-    <div className="min-h-screen text-white" style={{ backgroundColor: "#111318" }}>
-      {/* Premium background (grafite) */}
+    <div className="min-h-screen bg-white text-zinc-900">
+      {/* Premium background (white + fúcsia glow) */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(1100px_700px_at_20%_10%,rgba(225,29,255,0.16),transparent_58%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.10),transparent_62%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(900px_700px_at_50%_120%,rgba(255,255,255,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(17,19,24,0.65),rgba(17,19,24,1))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(1100px_650px_at_18%_10%,rgba(225,29,255,0.16),transparent_55%),radial-gradient(900px_520px_at_82%_18%,rgba(124,58,237,0.10),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.92),rgba(255,255,255,1))]" />
       </div>
 
       {/* Progress bar */}
@@ -220,7 +196,7 @@ export default function Page() {
         className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left"
         style={{
           scaleX,
-          background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`
+          background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
         }}
       />
 
@@ -230,39 +206,39 @@ export default function Page() {
           href={waLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed z-[55] bottom-5 right-5 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-semibold text-white shadow-[0_20px_60px_-35px_rgba(0,0,0,0.8)] backdrop-blur hover:bg-white/15"
+          className="fixed z-[55] bottom-5 right-5 rounded-2xl border border-zinc-200 bg-white/80 px-4 py-3 text-sm font-semibold text-zinc-900 shadow-[0_20px_60px_-35px_rgba(0,0,0,0.25)] backdrop-blur hover:bg-white"
         >
           💬 WhatsApp
         </Link>
       ) : null}
 
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-black/25 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-zinc-100 bg-white/70 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
               className="h-9 w-9 rounded-xl shadow-sm"
               style={{
-                background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`
+                background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
               }}
             />
             <div className="leading-tight">
               <p className="font-semibold tracking-tight">{BRAND.name}</p>
-              <p className="text-xs text-zinc-400">Marketing & Performance</p>
+              <p className="text-xs text-zinc-500">Marketing & Performance</p>
             </div>
           </div>
 
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-zinc-300">
-            <a href="#servicos" className="hover:text-white">
+          <nav className="hidden sm:flex items-center gap-6 text-sm text-zinc-600">
+            <a href="#servicos" className="hover:text-zinc-950">
               Serviços
             </a>
-            <a href="#processo" className="hover:text-white">
+            <a href="#processo" className="hover:text-zinc-950">
               Processo
             </a>
-            <a href="#cases" className="hover:text-white">
+            <a href="#cases" className="hover:text-zinc-950">
               Cases
             </a>
-            <a href="#faq" className="hover:text-white">
+            <a href="#faq" className="hover:text-zinc-950">
               FAQ
             </a>
           </nav>
@@ -271,10 +247,12 @@ export default function Page() {
             {hasWhatsApp ? (
               <Link
                 href={waLink()}
-                className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                }}
               >
                 Pedir diagnóstico
               </Link>
@@ -282,7 +260,9 @@ export default function Page() {
               <a
                 href="#contato"
                 className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+                style={{
+                  backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                }}
               >
                 Pedir diagnóstico
               </a>
@@ -292,67 +272,79 @@ export default function Page() {
       </header>
 
       <main>
-        {/* HERO (mobile: texto + foto lado a lado na primeira dobra) */}
-        <section className="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:pt-16">
-          <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_210px] lg:grid-cols-3 lg:items-start">
-            {/* Texto */}
+        {/* HERO */}
+        <section className="mx-auto max-w-6xl px-4 pt-10 pb-6 sm:pt-16">
+          {/* Linha 1: 2 colunas (texto + foto) */}
+          <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_220px] lg:grid-cols-3 lg:items-start">
+            {/* Texto (col-span 2 no desktop) */}
             <motion.div className="lg:col-span-2" initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
                 <Pill>Full service • performance de verdade</Pill>
               </motion.div>
 
+              {/* Headline mais “colorida” */}
               <motion.h1
                 variants={fadeUp}
-                className="mt-4 text-[28px] leading-tight sm:text-5xl font-semibold tracking-tight"
+                className="mt-4 text-[30px] leading-tight sm:text-5xl font-semibold tracking-tight text-zinc-950"
               >
-                Marketing{" "}
+                <span className="text-zinc-950">Marketing</span>{" "}
                 <span
                   className="bg-clip-text text-transparent"
                   style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`
+                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
                   }}
                 >
                   premium
                 </span>{" "}
-                com foco total em conversão.
+                <span className="text-zinc-950">para</span>{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent2}, ${BRAND.accent})`,
+                  }}
+                >
+                  gerar leads
+                </span>{" "}
+                <span className="text-zinc-950">com</span>{" "}
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                  }}
+                >
+                  conversão real
+                </span>
+                .
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="mt-3 text-zinc-300 leading-relaxed text-sm sm:text-lg max-w-2xl">
-                A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação. Tudo pensado para
-                gerar leads qualificados e escala.
+              <motion.p
+                variants={fadeUp}
+                className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg max-w-2xl"
+              >
+                A Fúcsia cuida do funil completo: estratégia → tráfego → criativos → copy → captação.
+                Tudo pensado para gerar leads qualificados e escala.
               </motion.p>
 
-              <motion.ul variants={fadeUp} className="mt-4 space-y-2 text-xs sm:text-sm text-zinc-200 max-w-2xl">
-                <li className="flex gap-2">
-                  <span className="mt-0.5">⚡</span>
-                  <span>Implementação rápida (sem enrolação)</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="mt-0.5">🎯</span>
-                  <span>Mensagem e criativos alinhados à oferta</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="mt-0.5">📈</span>
-                  <span>Otimização contínua pra baixar CPL e subir qualidade</span>
-                </li>
-              </motion.ul>
-
-              <motion.div variants={fadeUp} className="mt-6 flex flex-col sm:flex-row gap-3">
+              <motion.div variants={fadeUp} className="mt-5 flex flex-col sm:flex-row gap-3">
                 {hasWhatsApp ? (
                   <Link
                     href={waLink()}
-                    className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                    }}
                   >
-                    Quero diagnóstico no WhatsApp
+                    Quero diagnóstico
                   </Link>
                 ) : (
                   <a
                     href="#contato"
                     className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+                    style={{
+                      backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                    }}
                   >
                     Quero diagnóstico
                   </a>
@@ -360,138 +352,134 @@ export default function Page() {
 
                 <a
                   href="#servicos"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white/90 backdrop-blur hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
                 >
                   Ver serviços
                 </a>
               </motion.div>
 
-              <motion.p variants={fadeUp} className="mt-3 text-[11px] text-zinc-400">
+              <motion.p variants={fadeUp} className="mt-3 text-[11px] text-zinc-500">
                 Sem spam • resposta rápida • direto ao ponto
               </motion.p>
             </motion.div>
 
-            {/* Foto (sem caixa) */}
+            {/* Foto (2ª coluna / 3ª no desktop) */}
             <motion.div initial="hidden" animate="visible" variants={fadeUp} className="self-start">
               <HeroPortrait />
             </motion.div>
-
-            {/* Form */}
-            <motion.div
-              id="contato"
-              className="col-span-2 lg:col-span-1"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={fadeUp}
-            >
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 shadow-[0_22px_70px_-45px_rgba(0,0,0,0.85)] backdrop-blur">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-white">Diagnóstico em 2 minutos</p>
-                    <p className="mt-1 text-sm text-zinc-300">A gente te chama no WhatsApp com próximos passos claros.</p>
-                  </div>
-                  <div
-                    className="h-10 w-10 rounded-xl"
-                    style={{
-                      background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`
-                    }}
-                  />
-                </div>
-
-                <form action="/api/lead" method="POST" className="mt-5 space-y-3">
-                  <div>
-                    <label className="text-xs font-medium text-zinc-300">Nome</label>
-                    <input
-                      name="name"
-                      required
-                      className="mt-1 w-full rounded-xl border border-white/10 bg-black/25 px-3 py-2 text-sm text-white outline-none placeholder:text-zinc-500 focus:ring-2 focus:ring-fuchsia-500/20"
-                      placeholder="Seu nome"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-medium text-zinc-300">WhatsApp</label>
-                    <input
-                      name="whatsapp"
-                      required
-                      className="mt-1 w-full rounded-xl border border-white/10 bg-black/25 px-3 py-2 text-sm text-white outline-none placeholder:text-zinc-500 focus:ring-2 focus:ring-fuchsia-500/20"
-                      placeholder="(xx) xxxxx-xxxx"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-medium text-zinc-300">Objetivo</label>
-                    <select
-                      name="goal"
-                      className="mt-1 w-full rounded-xl border border-white/10 bg-black/25 px-3 py-2 text-sm text-white outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                      defaultValue="Leads"
-                    >
-                      <option>Leads</option>
-                      <option>Vendas</option>
-                      <option>Agenda cheia</option>
-                      <option>Escalar campanhas</option>
-                      <option>Reposicionar oferta</option>
-                    </select>
-                  </div>
-
-                  <button
-                    className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                    style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-                  >
-                    Enviar e receber plano rápido
-                  </button>
-
-                  <p className="text-[11px] text-zinc-400">Ao enviar, você concorda em receber contato pelo WhatsApp.</p>
-                </form>
-
-                {hasWhatsApp ? (
-                  <div className="mt-4">
-                    <Link
-                      href={waLink()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 backdrop-blur hover:bg-white/10"
-                    >
-                      Prefiro chamar no WhatsApp agora →
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
-            </motion.div>
           </div>
-        </section>
 
-        {/* Métricas / prova rápida */}
-        <section className="mx-auto max-w-6xl px-4 pb-10">
+          {/* Linha 2: FULL WIDTH (resolve o “lado vazio”) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
-            className="grid gap-4 lg:grid-cols-3"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={fadeUp}
+            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-5 backdrop-blur"
           >
-            <motion.div variants={fadeUp}>
-              <Metric
-                label="Posicionamento"
-                value="Full service"
-                hint="Estratégia, tráfego, criativos e copy no mesmo time, sem desalinhamento."
+            <div className="grid gap-3 sm:grid-cols-3 text-sm text-zinc-700">
+              <div className="rounded-xl border border-zinc-200 bg-white p-4">
+                <p className="font-semibold text-zinc-950">⚡ Implementação rápida</p>
+                <p className="mt-1 text-zinc-600">Sem enrolação: funil e campanha no ar com clareza.</p>
+              </div>
+              <div className="rounded-xl border border-zinc-200 bg-white p-4">
+                <p className="font-semibold text-zinc-950">🎯 Mensagem + criativos</p>
+                <p className="mt-1 text-zinc-600">Alinhados à oferta pra atrair lead qualificado.</p>
+              </div>
+              <div className="rounded-xl border border-zinc-200 bg-white p-4">
+                <p className="font-semibold text-zinc-950">📈 Otimização contínua</p>
+                <p className="mt-1 text-zinc-600">Pra baixar CPL e subir qualidade com consistência.</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Form (abaixo, largura boa) */}
+          <motion.div
+            id="contato"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={fadeUp}
+            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-[0_22px_70px_-45px_rgba(0,0,0,0.22)] backdrop-blur"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-zinc-950">Diagnóstico em 2 minutos</p>
+                <p className="mt-1 text-sm text-zinc-600">
+                  A gente te chama no WhatsApp com próximos passos claros.
+                </p>
+              </div>
+              <div
+                className="h-10 w-10 rounded-xl"
+                style={{
+                  background: `radial-gradient(circle at 30% 30%, ${BRAND.accent}, ${BRAND.dark})`,
+                }}
               />
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <Metric
-                label="Velocidade"
-                value="Implementação rápida"
-                hint="Do diagnóstico ao funil no ar com consistência (sem ‘projetinho eterno’)."
-              />
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <Metric
-                label="Método"
-                value="Otimização semanal"
-                hint="Testes e ajustes contínuos pra baixar CPL e elevar a qualidade do lead."
-              />
-            </motion.div>
+            </div>
+
+            <form action="/api/lead" method="POST" className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="sm:col-span-1">
+                <label className="text-xs font-medium text-zinc-700">Nome</label>
+                <input
+                  name="name"
+                  required
+                  className="mt-1 w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                  placeholder="Seu nome"
+                />
+              </div>
+
+              <div className="sm:col-span-1">
+                <label className="text-xs font-medium text-zinc-700">WhatsApp</label>
+                <input
+                  name="whatsapp"
+                  required
+                  className="mt-1 w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                  placeholder="(xx) xxxxx-xxxx"
+                />
+              </div>
+
+              <div className="sm:col-span-1">
+                <label className="text-xs font-medium text-zinc-700">Objetivo</label>
+                <select
+                  name="goal"
+                  className="mt-1 w-full rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                  defaultValue="Leads"
+                >
+                  <option>Leads</option>
+                  <option>Vendas</option>
+                  <option>Agenda cheia</option>
+                  <option>Escalar campanhas</option>
+                  <option>Reposicionar oferta</option>
+                </select>
+              </div>
+
+              <div className="sm:col-span-3">
+                <button
+                  className="w-full rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+                  style={{
+                    backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})`,
+                  }}
+                >
+                  Enviar e receber plano rápido
+                </button>
+                <p className="mt-2 text-[11px] text-zinc-500">
+                  Ao enviar, você concorda em receber contato pelo WhatsApp.
+                </p>
+              </div>
+            </form>
+
+            {hasWhatsApp ? (
+              <div className="mt-4">
+                <Link
+                  href={waLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
+                >
+                  Prefiro chamar no WhatsApp agora →
+                </Link>
+              </div>
+            ) : null}
           </motion.div>
         </section>
 
@@ -500,8 +488,8 @@ export default function Page() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Serviços"
-              title="Full service de verdade."
-              subtitle="Você não compra “posts”. Você compra demanda, conversão e estrutura pra escalar."
+              title="Full service, sem bagunça."
+              subtitle="Estratégia, tráfego, criativos, copy e captação — tudo alinhado para conversão."
             />
           </motion.div>
 
@@ -539,7 +527,11 @@ export default function Page() {
           >
             {steps.map((st, idx) => (
               <motion.div key={st.title} variants={fadeUp}>
-                <GlassCard icon={String(idx + 1)} title={st.title} desc={st.desc} />
+                <div className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur">
+                  <p className="text-xs font-semibold tracking-widest text-zinc-500 uppercase">Passo {idx + 1}</p>
+                  <p className="mt-2 font-semibold text-zinc-950">{st.title}</p>
+                  <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{st.desc}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -551,7 +543,7 @@ export default function Page() {
             <SectionTitle
               eyebrow="Prova"
               title="Entrega com cara de escala."
-              subtitle="Se você tiver números/prints, eu adapto esses blocos para cases reais (CPL, conversão, volume)."
+              subtitle="Quando você tiver números/prints, eu deixo essa seção editorial (bem agência high-end)."
             />
           </motion.div>
 
@@ -562,63 +554,26 @@ export default function Page() {
             viewport={{ once: true, amount: 0.2 }}
             variants={stagger}
           >
-            <motion.div variants={fadeUp}>
-              <GlassCard
-                title="Campanha + landing + WhatsApp"
-                desc="Estrutura enxuta de captação e triagem — sem fricção e com CTA claro."
-              />
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <GlassCard
-                title="Criativos de performance"
-                desc="Rotina de vídeos curtos com hook, prova, retenção e CTA pra escalar testes."
-              />
-            </motion.div>
-            <motion.div variants={fadeUp}>
-              <GlassCard
-                title="Otimização semanal"
-                desc="Ajustes contínuos de público, criativo e página pra melhorar CPL e qualidade."
-              />
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          >
-            <div>
-              <p className="font-semibold text-white">Quer ver se faz sentido pro seu caso?</p>
-              <p className="mt-1 text-sm text-zinc-300">Me diga seu nicho e sua meta. Eu respondo com próximos passos.</p>
-            </div>
-            {hasWhatsApp ? (
-              <Link
-                href={waLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-              >
-                Chamar no WhatsApp
-              </Link>
-            ) : (
-              <a
-                href="#contato"
-                className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-              >
-                Pedir diagnóstico
-              </a>
-            )}
+            {[
+              { t: "Campanha + landing + WhatsApp", d: "Estrutura enxuta de captação e triagem — sem fricção." },
+              { t: "Criativos de performance", d: "Rotina de vídeos curtos com hook, prova e CTA pra escalar testes." },
+              { t: "Otimização semanal", d: "Ajustes contínuos de público, criativo e página pra melhorar CPL e qualidade." },
+            ].map((c) => (
+              <motion.div key={c.t} variants={fadeUp}>
+                <GlassCard title={c.t} desc={c.d} />
+              </motion.div>
+            ))}
           </motion.div>
         </section>
 
-        {/* Sobre (mantém, mas sem “caixa de foto”: usamos o mesmo estilo) */}
+        {/* Sobre */}
         <section id="sobre" className="mx-auto max-w-6xl px-4 py-12">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
-            <SectionTitle eyebrow="Sobre" title="Quem está por trás da Fúcsia" subtitle="Autoridade e confiança: essencial pra converter tráfego pago." />
+            <SectionTitle
+              eyebrow="Sobre"
+              title="Quem está por trás da Fúcsia"
+              subtitle="Autoridade e confiança: essencial pra converter tráfego pago."
+            />
           </motion.div>
 
           <motion.div
@@ -626,7 +581,7 @@ export default function Page() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeUp}
-            className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6 shadow-[0_20px_70px_-50px_rgba(0,0,0,0.9)] backdrop-blur"
+            className="mt-8 rounded-2xl border border-zinc-200 bg-white/70 p-5 sm:p-6 shadow-sm backdrop-blur"
           >
             <div className="grid gap-6 lg:grid-cols-[220px_1fr] lg:items-center">
               <div className="relative w-full max-w-[220px]">
@@ -634,7 +589,8 @@ export default function Page() {
                   <div
                     className="absolute inset-0 -z-10"
                     style={{
-                      background: "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)"
+                      background:
+                        "radial-gradient(circle at 55% 35%, rgba(225,29,255,0.18), transparent 60%)",
                     }}
                   />
                   <Image
@@ -642,23 +598,24 @@ export default function Page() {
                     alt="Sócia da Fúcsia"
                     fill
                     className="object-contain"
-                    style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.55))" }}
+                    style={{ filter: "drop-shadow(0px 18px 40px rgba(0,0,0,0.18))" }}
                   />
                 </div>
               </div>
 
               <div>
-                <p className="text-sm font-semibold text-white">Sócia • Estratégia & Performance</p>
-                <p className="mt-2 text-zinc-300 leading-relaxed">
-                  Profissional do mercado há <span className="font-semibold text-white">mais de 6 anos</span>, atuando com tráfego pago,
-                  estratégia, copy e criativos focados em conversão. O objetivo é simples: transformar atenção em demanda real.
+                <p className="text-sm font-semibold text-zinc-950">Sócia • Estratégia & Performance</p>
+                <p className="mt-2 text-zinc-600 leading-relaxed">
+                  Profissional do mercado há <span className="font-semibold text-zinc-950">mais de 6 anos</span>, atuando com
+                  tráfego pago, estratégia, copy e criativos focados em conversão. O objetivo é simples: transformar
+                  atenção em demanda real.
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {["+6 anos no ramo", "Tráfego & escala", "Copy & criativos", "Full service"].map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur"
+                      className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur"
                     >
                       {tag}
                     </span>
@@ -708,18 +665,18 @@ export default function Page() {
               <motion.details
                 key={f.q}
                 variants={fadeUp}
-                className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-sm backdrop-blur"
+                className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur"
               >
-                <summary className="cursor-pointer font-semibold text-white">{f.q}</summary>
-                <p className="mt-2 text-sm text-zinc-300 leading-relaxed">{f.a}</p>
+                <summary className="cursor-pointer font-semibold text-zinc-950">{f.q}</summary>
+                <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{f.a}</p>
               </motion.details>
             ))}
           </motion.div>
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-white/10">
-          <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-zinc-400">
+        <footer className="border-t border-zinc-100">
+          <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-zinc-600">
             <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
               <p>
                 © {new Date().getFullYear()} {BRAND.name}. Todos os direitos reservados.
