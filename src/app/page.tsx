@@ -98,9 +98,9 @@ function GlassCard({ title, desc }: { title: string; desc: string }) {
 }
 
 /**
- * FOTO SEM “FUNDO”
- * - Removemos o overlay que parecia um retângulo
- * - Mantemos glow leve + drop-shadow pra dar presença
+ * FOTO “SEM FUNDO” (mesmo quando o recorte fica com matte branco)
+ * - mixBlendMode: multiply apaga branco residual no fundo branco
+ * - glow leve + drop-shadow mantém presença premium
  */
 function HeroPortrait() {
   return (
@@ -117,8 +117,9 @@ function HeroPortrait() {
           alt="Sócia da Fúcsia"
           fill
           priority
-          className="object-contain"
+          className="object-contain select-none"
           style={{
+            mixBlendMode: "multiply",
             filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.18))",
           }}
         />
@@ -205,7 +206,7 @@ export default function Page() {
       <main>
         {/* HERO */}
         <section className="mx-auto max-w-6xl px-4 pt-10 pb-6 sm:pt-16">
-          {/* Linha 1: APENAS Texto + Foto */}
+          {/* Linha 1: Texto + Foto */}
           <div className="grid gap-6 lg:gap-10 grid-cols-[1fr_160px] sm:grid-cols-[1fr_220px] lg:grid-cols-3 lg:items-start">
             <motion.div className="lg:col-span-2" initial="hidden" animate="visible" variants={stagger}>
               <motion.div variants={fadeUp}>
@@ -255,30 +256,32 @@ export default function Page() {
             </motion.div>
           </div>
 
-          {/* Linha 2: Botões FULL WIDTH (como você pediu) */}
+          {/* Linha 2: BOTÕES em uma faixa (fica “nova coluna/linha” visualmente) */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mt-6 flex flex-col sm:flex-row gap-3"
+            className="mt-6 rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur shadow-sm"
           >
-            <a
-              href="#contato"
-              className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-              style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-            >
-              Quero diagnóstico
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="#contato"
+                className="flex-1 inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+                style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+              >
+                Quero diagnóstico
+              </a>
 
-            <a
-              href="#servicos"
-              className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
-            >
-              Ver serviços
-            </a>
+              <a
+                href="#servicos"
+                className="flex-1 inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
+              >
+                Ver serviços
+              </a>
+            </div>
           </motion.div>
 
-          {/* Linha 3: benefícios FULL WIDTH (pra não sobrar “lado vazio”) */}
+          {/* Linha 3: benefícios FULL WIDTH */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -499,8 +502,11 @@ export default function Page() {
                     src="/socia.png"
                     alt="Sócia da Fúcsia"
                     fill
-                    className="object-contain"
-                    style={{ filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.16))" }}
+                    className="object-contain select-none"
+                    style={{
+                      mixBlendMode: "multiply",
+                      filter: "drop-shadow(0px 18px 38px rgba(0,0,0,0.16))",
+                    }}
                   />
                 </div>
               </div>
