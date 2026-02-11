@@ -6,10 +6,13 @@ import { motion, useScroll, useSpring } from "framer-motion";
 
 const BRAND = {
   name: "Fúcsia",
-  accent: "#E11DFF",
+  // fúcsia mais “chique” (menos neon)
+  accent: "#C026D3",
   accent2: "#7C3AED",
-  dark: "#0B0B10",
-  paper: "#FBFAFC", // “branco premium”
+  // grafite minimalista (parecido com o site referência)
+  graphite: "#3E3F43",
+  graphite2: "#2F3034",
+  paper: "#FFFFFF",
 };
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
@@ -23,7 +26,7 @@ function waLink() {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 12, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 10, filter: "blur(10px)" },
   visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
@@ -32,17 +35,40 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.08, delayChildren: 0.06 } },
 };
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-zinc-200/70 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 backdrop-blur">
-      <span
-        className="h-2 w-2 rounded-full"
-        style={{ background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-      />
-      {children}
-    </span>
-  );
-}
+const services = [
+  { title: "Tráfego pago", desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado." },
+  { title: "Social media", desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego." },
+  { title: "Copy", desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta." },
+  { title: "Estratégia", desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte." },
+  { title: "Captação de leads", desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade." },
+  { title: "Vídeo (gravação/edição)", desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação." },
+];
+
+const steps = [
+  { title: "Diagnóstico", desc: "Entendemos seu cenário e mapeamos o que precisa ser ajustado pra converter melhor." },
+  { title: "Execução", desc: "Copy + criativos + landing + tracking + campanha no ar com velocidade." },
+  { title: "Otimização", desc: "Rotina de testes e melhorias contínuas pra baixar CPL e subir qualidade do lead." },
+];
+
+const faqs = [
+  {
+    q: "Vocês atendem qualquer tipo de negócio?",
+    a: "Atendemos serviços, negócios locais e digitais. O principal é ter oferta clara e demanda real.",
+  },
+  { q: "Preciso ter site pronto?", a: "Não. Subimos uma landing rápida focada em conversão e tráfego pago." },
+  {
+    q: "Qual o prazo pra começar?",
+    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
+  },
+  {
+    q: "Dá pra fazer só tráfego?",
+    a: "Dá. Mas o melhor resultado vem quando copy + criativo + página andam juntos.",
+  },
+  {
+    q: "Como é o primeiro contato?",
+    a: "Você chama no WhatsApp ou preenche o formulário. A gente faz perguntas rápidas e define o próximo passo.",
+  },
+];
 
 function SectionTitle({
   eyebrow,
@@ -56,62 +82,39 @@ function SectionTitle({
   return (
     <div className="max-w-2xl">
       {eyebrow ? (
-        <p className="text-xs font-semibold tracking-widest text-zinc-500 uppercase">{eyebrow}</p>
+        <p className="text-xs font-semibold tracking-[0.22em] text-zinc-500 uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-950">
-        {title}
-      </h2>
+      <h2 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-950">{title}</h2>
       {subtitle ? <p className="mt-3 text-zinc-600 leading-relaxed">{subtitle}</p> : null}
     </div>
   );
 }
 
-function SoftCard({
-  title,
-  desc,
-  icon,
-}: {
-  title: string;
-  desc: string;
-  icon?: string;
-}) {
+function MinimalCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-3xl border border-zinc-200/70 bg-white/70 p-5 shadow-[0_20px_80px_-65px_rgba(0,0,0,0.35)] backdrop-blur">
-      <p className="text-sm font-semibold text-zinc-950">
-        {icon ? <span className="mr-2">{icon}</span> : null}
-        {title}
-      </p>
+    <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-[0_20px_70px_-55px_rgba(0,0,0,0.25)]">
+      <p className="text-sm font-semibold text-zinc-950">{title}</p>
       <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{desc}</p>
-      <div
-        className="mt-4 h-[2px] w-14 rounded-full"
-        style={{ background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-      />
+      <div className="mt-4 h-px w-full bg-zinc-100" />
+      <p className="mt-3 text-[12px] text-zinc-500">
+        <span className="font-semibold" style={{ color: BRAND.accent }}>
+          Fúcsia
+        </span>{" "}
+        • Marketing & Performance
+      </p>
     </div>
   );
 }
 
 /**
- * Retrato “editorial” (sem caixa aparente)
- * - A imagem fica “solta” e integrada ao fundo
- * - mixBlendMode ajuda quando sobra matte branco do recorte
+ * Foto PNG “solta” no hero (sem caixa)
+ * - usamos mixBlendMode pra ajudar a apagar matte branco
+ * - um leve drop-shadow só pra dar profundidade
  */
-function EditorialPortrait() {
+function HeroPortrait() {
   return (
-    <div className="relative">
-      {/* Glow suave atrás */}
-      <div
-        className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] blur-3xl opacity-70"
-        style={{
-          background:
-            "radial-gradient(circle at 60% 35%, rgba(225,29,255,0.22), transparent 60%)",
-        }}
-      />
-
-      {/* “Véu” sutil para dar profundidade, sem parecer caixa */}
-      <div className="absolute -inset-4 -z-10 rounded-[40px] bg-white/35 backdrop-blur-[2px]" />
-
-      {/* A imagem em si */}
-      <div className="relative h-[320px] sm:h-[380px] lg:h-[520px]">
+    <div className="relative mx-auto w-full max-w-[420px]">
+      <div className="relative h-[360px] sm:h-[460px]">
         <Image
           src="/socia.png"
           alt="Sócia da Fúcsia"
@@ -119,60 +122,25 @@ function EditorialPortrait() {
           priority
           className="object-contain select-none"
           style={{
-            mixBlendMode: "multiply",
-            filter: "drop-shadow(0px 18px 42px rgba(0,0,0,0.16))",
+            mixBlendMode: "screen",
+            filter: "drop-shadow(0px 22px 46px rgba(0,0,0,0.28))",
           }}
         />
       </div>
 
-      <div className="mt-2 flex items-center justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-xs font-semibold text-zinc-950 truncate">Giovanna Duarte</p>
-          <p className="text-[11px] text-zinc-600 truncate">Estratégia • Performance</p>
+      <div className="mt-2 flex items-center justify-between text-white/85">
+        <div>
+          <p className="text-xs font-semibold text-white">Giovanna Duarte</p>
+          <p className="text-[11px] text-white/70">Estratégia • Performance</p>
         </div>
         <div className="text-right">
-          <p className="text-xs font-semibold text-zinc-950">+6 anos</p>
-          <p className="text-[11px] text-zinc-600">no mercado</p>
+          <p className="text-xs font-semibold text-white">+6 anos</p>
+          <p className="text-[11px] text-white/70">no mercado</p>
         </div>
       </div>
     </div>
   );
 }
-
-const services = [
-  { title: "Tráfego pago", desc: "Campanhas com criativos e copy alinhados à oferta, focadas em lead qualificado." },
-  { title: "Social media", desc: "Conteúdo com intenção: constrói desejo e melhora a conversão do tráfego." },
-  { title: "Copy", desc: "Mensagem certa no anúncio e na página, reduzindo objeções e aumentando resposta." },
-  { title: "Estratégia", desc: "Oferta, funil e posicionamento: sem isso, performance vira sorte." },
-  { title: "Captação de leads", desc: "WhatsApp + formulário com triagem e roteiro pra vender com previsibilidade." },
-  { title: "Vídeo (gravação/edição)", desc: "Criativos de performance: hook, prova, retenção e CTA — sem enrolação." },
-];
-
-const steps = [
-  { title: "Diagnóstico rápido", desc: "Entendemos produto, público, ticket e meta. Você sai com clareza do que fazer." },
-  { title: "Plano + execução", desc: "Criativos + landing + tracking + campanha no ar com velocidade." },
-  { title: "Otimização semanal", desc: "Testes, cortes e melhorias contínuas pra baixar CPL e subir qualidade do lead." },
-];
-
-const faqs = [
-  {
-    q: "Vocês trabalham com qual tipo de negócio?",
-    a: "Atendemos serviços, negócios locais e digitais. O mais importante é ter oferta clara e demanda real.",
-  },
-  { q: "Preciso ter site pronto?", a: "Não. Podemos subir uma landing rápida focada em conversão e tráfego pago." },
-  {
-    q: "Qual o prazo pra começar?",
-    a: "Normalmente 3 a 7 dias, dependendo do volume de criativos e do setup de tracking.",
-  },
-  {
-    q: "Vocês fazem só tráfego?",
-    a: "Podemos fazer só tráfego, mas o melhor resultado vem quando copy + criativo + página andam juntos.",
-  },
-  {
-    q: "Como funciona o primeiro contato?",
-    a: "Você preenche o formulário ou chama no WhatsApp. A gente faz perguntas rápidas e define o próximo passo.",
-  },
-];
 
 export default function Page() {
   const hasWhatsApp = Boolean(WHATSAPP_NUMBER);
@@ -182,13 +150,7 @@ export default function Page() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 22 });
 
   return (
-    <div className="min-h-screen text-zinc-900" style={{ backgroundColor: BRAND.paper }}>
-      {/* Fundo “clean premium”: paper + glows discretos */}
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(900px_520px_at_18%_10%,rgba(225,29,255,0.14),transparent_60%),radial-gradient(900px_520px_at_86%_20%,rgba(124,58,237,0.10),transparent_62%)]" />
-        <div className="absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(0,0,0,0.45)_1px,transparent_1px)] [background-size:24px_24px]" />
-      </div>
-
+    <div className="min-h-screen text-zinc-900">
       {/* Barra progresso */}
       <motion.div
         className="fixed left-0 top-0 z-[60] h-[3px] w-full origin-left"
@@ -198,200 +160,167 @@ export default function Page() {
         }}
       />
 
-      {/* Header (minimal) */}
-      <header className="sticky top-0 z-50 border-b border-zinc-200/60 bg-white/65 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div
-              className="h-9 w-9 rounded-2xl shadow-sm"
-              style={{ background: `linear-gradient(135deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-            />
-            <div className="leading-tight">
-              <p className="font-semibold tracking-tight">{BRAND.name}</p>
-              <p className="text-xs text-zinc-500">Marketing & Performance</p>
+      {/* HERO: grafite + minimalista (estilo referência) */}
+      <header
+        className="relative overflow-hidden"
+        style={{
+          background: `linear-gradient(180deg, ${BRAND.graphite} 0%, ${BRAND.graphite2} 100%)`,
+        }}
+      >
+        {/* textura sutil */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:radial-gradient(rgba(255,255,255,0.9)_1px,transparent_1px)] [background-size:26px_26px]" />
+
+        {/* glow fúcsia MUITO discreto */}
+        <div
+          className="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-3xl opacity-30"
+          style={{
+            background: `radial-gradient(circle at 50% 45%, rgba(192,38,211,0.65), transparent 60%)`,
+          }}
+        />
+
+        {/* Top bar: logo + menu hamburguer fake + CTA */}
+        <div className="mx-auto max-w-6xl px-4 pt-6">
+          <div className="flex items-center justify-between">
+            <div className="text-center w-full sm:w-auto sm:text-left">
+              <p className="text-white/90 text-sm tracking-[0.16em] uppercase">
+                {BRAND.name} <span className="text-white/70">• Marketing & Performance</span>
+              </p>
+              <div className="mt-1 h-px w-40 bg-white/20 mx-auto sm:mx-0" />
+            </div>
+
+            <div className="hidden sm:flex items-center gap-3">
+              <a
+                href="#contato"
+                className="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15"
+              >
+                Entre em contato
+              </a>
             </div>
           </div>
-
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-zinc-600">
-            <a href="#servicos" className="hover:text-zinc-950">Serviços</a>
-            <a href="#processo" className="hover:text-zinc-950">Processo</a>
-            <a href="#cases" className="hover:text-zinc-950">Prova</a>
-            <a href="#faq" className="hover:text-zinc-950">FAQ</a>
-          </nav>
-
-          <a
-            href="#contato"
-            className="hidden sm:inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-            style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-          >
-            Pedir diagnóstico
-          </a>
         </div>
-      </header>
 
-      {/* WhatsApp flutuante (desktop) */}
-      {hasWhatsApp ? (
-        <Link
-          href={whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex fixed z-[55] bottom-5 right-5 rounded-3xl border border-zinc-200/70 bg-white/75 px-4 py-3 text-sm font-semibold text-zinc-900 shadow-[0_20px_70px_-45px_rgba(0,0,0,0.35)] backdrop-blur hover:bg-white"
+        {/* Conteúdo hero */}
+        <motion.div
+          className="mx-auto max-w-6xl px-4 pt-10 pb-10 sm:pt-14 sm:pb-16"
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
         >
-          💬 WhatsApp
-        </Link>
-      ) : null}
-
-      <main>
-        {/* HERO (mobile-first, editorial clean) */}
-        <section className="mx-auto max-w-6xl px-4 pt-7 pb-10 sm:pt-14">
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="grid gap-8 lg:grid-cols-2 lg:items-start">
-            {/* Em mobile, foto primeiro pra “aparecer de cara” */}
-            <motion.div variants={fadeUp} className="order-1 lg:order-2">
-              <EditorialPortrait />
-            </motion.div>
-
-            {/* Texto */}
-            <div className="order-2 lg:order-1">
-              <motion.div variants={fadeUp}>
-                <Pill>Full service • tráfego com direção</Pill>
-              </motion.div>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
+            {/* Texto (bem editorial, central no mobile) */}
+            <div className="text-center lg:text-left">
+              <motion.p variants={fadeUp} className="text-white/70 text-xs font-semibold tracking-[0.22em] uppercase">
+                Full service • performance minimalista
+              </motion.p>
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-4 text-[32px] leading-[1.06] sm:text-5xl font-semibold tracking-tight text-zinc-950"
+                className="mt-4 text-white font-semibold tracking-tight leading-[1.02] text-[42px] sm:text-[54px]"
+                style={{ letterSpacing: "-0.03em" }}
               >
-                Aumente a{" "}
-                <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}>
-                  quantidade
-                </span>{" "}
-                e a{" "}
-                <span className="bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent2}, ${BRAND.accent})` }}>
-                  qualidade
-                </span>{" "}
-                dos seus leads.
+                QUEM
+                <br />
+                SOMOS
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="mt-3 text-zinc-600 leading-relaxed text-sm sm:text-lg">
-                Sem “tráfego no escuro”. A Fúcsia entrega estratégia → copy → criativos → landing → captação.
-                Tudo alinhado para conversão.
+              <motion.p variants={fadeUp} className="mt-4 text-white/85 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Olá! Somos a <span className="font-semibold text-white">{BRAND.name}</span>, agência full service focada em
+                gerar <span className="font-semibold">leads</span> e <span className="font-semibold">vendas</span> com estratégia,
+                copy, criativos e tráfego pago.
               </motion.p>
 
-              {/* CTA clean (estilo “clínica premium”) */}
-              <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:grid-cols-2">
+              <motion.div variants={fadeUp} className="mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
                 <a
                   href="#contato"
-                  className="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+                  className="inline-flex items-center justify-center rounded-full border border-white/40 bg-transparent px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
                 >
-                  Quero diagnóstico
+                  ENTRE EM CONTATO
                 </a>
+
                 <a
                   href="#servicos"
-                  className="inline-flex items-center justify-center rounded-2xl border border-zinc-200/70 bg-white/70 px-5 py-3 text-sm font-semibold text-zinc-950 backdrop-blur hover:bg-white"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white/95 hover:bg-white/15"
                 >
-                  Ver serviços
+                  VER SERVIÇOS
                 </a>
               </motion.div>
 
-              {/* Micro prova (bem discreta) */}
-              <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:grid-cols-3">
-                <SoftCard icon="⚡" title="Implementação rápida" desc="Funil e campanha no ar com clareza." />
-                <SoftCard icon="🎯" title="Mensagem + criativo" desc="Anúncio e página falando a mesma coisa." />
-                <SoftCard icon="📈" title="Otimização contínua" desc="CPL menor e lead melhor, com consistência." />
-              </motion.div>
+              <motion.p variants={fadeUp} className="mt-5 text-[11px] text-white/60">
+                Sem spam • resposta rápida • direto ao ponto
+              </motion.p>
             </div>
-          </motion.div>
 
-          {/* FORM (primeiro bloco de conversão) */}
-          <motion.div
-            id="contato"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={fadeUp}
-            className="mt-10 rounded-3xl border border-zinc-200/70 bg-white/75 p-5 sm:p-6 shadow-[0_26px_90px_-60px_rgba(0,0,0,0.28)] backdrop-blur"
+            {/* Foto (aparece de cara no mobile, estilo referência) */}
+            <motion.div variants={fadeUp} className="lg:justify-self-end">
+              <HeroPortrait />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* WhatsApp bolha (se tiver número) */}
+        {hasWhatsApp ? (
+          <Link
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed z-[55] bottom-5 right-5 h-14 w-14 rounded-full bg-green-500 grid place-items-center shadow-[0_20px_60px_-35px_rgba(0,0,0,0.45)]"
+            aria-label="WhatsApp"
+            title="WhatsApp"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold text-zinc-950">Diagnóstico em 2 minutos</p>
-                <p className="mt-1 text-sm text-zinc-600">
-                  A gente te chama no WhatsApp com próximos passos claros.
-                </p>
+            <span className="text-white text-xl">💬</span>
+          </Link>
+        ) : null}
+      </header>
+
+      {/* SEÇÕES (white clean) */}
+      <main style={{ backgroundColor: BRAND.paper }}>
+        {/* Sobre / editorial */}
+        <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            {/* “capsule image” igual referência */}
+            <div className="order-2 lg:order-1">
+              <div className="rounded-[38px] bg-zinc-100 border border-zinc-200 overflow-hidden">
+                <div className="relative h-[220px] sm:h-[260px]">
+                  {/* reaproveita a PNG, só pra criar o “capsule” editorial */}
+                  <Image
+                    src="/socia.png"
+                    alt="Giovanna Duarte"
+                    fill
+                    className="object-contain"
+                    style={{ mixBlendMode: "multiply", filter: "drop-shadow(0px 12px 26px rgba(0,0,0,0.14))" }}
+                  />
+                </div>
               </div>
-              <div className="h-10 w-10 rounded-2xl" style={{ background: `linear-gradient(135deg, ${BRAND.accent}, ${BRAND.accent2})` }} />
             </div>
 
-            <form action="/api/lead" method="POST" className="mt-5 grid gap-3 sm:grid-cols-3">
-              <div className="sm:col-span-1">
-                <label className="text-xs font-medium text-zinc-700">Nome</label>
-                <input
-                  name="name"
-                  required
-                  className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                  placeholder="Seu nome"
-                />
-              </div>
+            <div className="order-1 lg:order-2">
+              <SectionTitle
+                eyebrow="Sobre"
+                title="Estratégia antes de tráfego."
+                subtitle="Acreditamos que cada negócio tem um funil, uma história e uma oferta. Nosso trabalho vai além de “rodar anúncio”: é sobre previsibilidade, qualidade de lead e escala."
+              />
 
-              <div className="sm:col-span-1">
-                <label className="text-xs font-medium text-zinc-700">WhatsApp</label>
-                <input
-                  name="whatsapp"
-                  required
-                  className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                  placeholder="(xx) xxxxx-xxxx"
-                />
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-3xl border border-zinc-200 bg-white p-5">
+                  <p className="text-sm font-semibold text-zinc-950">+6 anos de mercado</p>
+                  <p className="mt-2 text-sm text-zinc-600">Performance, copy e criativos voltados pra conversão.</p>
+                </div>
+                <div className="rounded-3xl border border-zinc-200 bg-white p-5">
+                  <p className="text-sm font-semibold text-zinc-950">Full service</p>
+                  <p className="mt-2 text-sm text-zinc-600">Estratégia • Tráfego • Copy • Criativos • Captação</p>
+                </div>
               </div>
-
-              <div className="sm:col-span-1">
-                <label className="text-xs font-medium text-zinc-700">Objetivo</label>
-                <select
-                  name="goal"
-                  className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
-                  defaultValue="Leads"
-                >
-                  <option>Leads</option>
-                  <option>Vendas</option>
-                  <option>Agenda cheia</option>
-                  <option>Escalar campanhas</option>
-                  <option>Reposicionar oferta</option>
-                </select>
-              </div>
-
-              <div className="sm:col-span-3">
-                <button
-                  className="w-full rounded-2xl px-4 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-                  style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
-                >
-                  Enviar e receber plano rápido
-                </button>
-                <p className="mt-2 text-[11px] text-zinc-500">
-                  Ao enviar, você concorda em receber contato pelo WhatsApp.
-                </p>
-              </div>
-            </form>
-
-            {hasWhatsApp ? (
-              <div className="mt-4">
-                <Link
-                  href={whatsappHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-center rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
-                >
-                  Prefiro chamar no WhatsApp agora →
-                </Link>
-              </div>
-            ) : null}
-          </motion.div>
+            </div>
+          </div>
         </section>
 
         {/* Serviços */}
-        <section id="servicos" className="mx-auto max-w-6xl px-4 py-12">
+        <section id="servicos" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Serviços"
-              title="Full service, com consistência."
-              subtitle="Tráfego, copy, criativos e captação — tudo alinhado para conversão."
+              title="O pacote completo (sem bagunça)."
+              subtitle="Você não precisa coordenar 5 fornecedores. A gente cuida da cadeia de conversão."
             />
           </motion.div>
 
@@ -404,19 +333,19 @@ export default function Page() {
           >
             {services.map((s) => (
               <motion.div key={s.title} variants={fadeUp}>
-                <SoftCard title={s.title} desc={s.desc} />
+                <MinimalCard title={s.title} desc={s.desc} />
               </motion.div>
             ))}
           </motion.div>
         </section>
 
         {/* Processo */}
-        <section id="processo" className="mx-auto max-w-6xl px-4 py-12">
+        <section id="processo" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
             <SectionTitle
               eyebrow="Processo"
-              title="Simples, rápido e mensurável."
-              subtitle="Você sabe exatamente o que está acontecendo e por quê — com foco em resultado."
+              title="Simples e mensurável."
+              subtitle="Um método direto: entender → executar → otimizar. Sem firula."
             />
           </motion.div>
 
@@ -427,108 +356,152 @@ export default function Page() {
             viewport={{ once: true, amount: 0.2 }}
             variants={stagger}
           >
-            {steps.map((st, idx) => (
+            {steps.map((st, i) => (
               <motion.div key={st.title} variants={fadeUp}>
-                <SoftCard
-                  icon={`0${idx + 1}`}
-                  title={st.title}
-                  desc={st.desc}
-                />
+                <div className="rounded-3xl border border-zinc-200 bg-white p-6">
+                  <p className="text-xs font-semibold tracking-[0.22em] text-zinc-500 uppercase">Passo {i + 1}</p>
+                  <p className="mt-3 text-lg font-semibold text-zinc-950">{st.title}</p>
+                  <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{st.desc}</p>
+                  <div
+                    className="mt-5 h-[2px] w-16 rounded-full"
+                    style={{ background: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+                  />
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </section>
 
-        {/* Prova / Cases */}
-        <section id="cases" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
-            <SectionTitle
-              eyebrow="Prova"
-              title="Entrega com cara de escala."
-              subtitle="Quando você tiver prints/números, eu deixo essa seção ainda mais editorial."
-            />
-          </motion.div>
+        {/* Contato/Form */}
+        <section id="contato" className="mx-auto max-w-6xl px-4 pb-14 sm:pb-20">
+          <div className="rounded-[40px] border border-zinc-200 bg-zinc-50 p-6 sm:p-10">
+            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+              <div>
+                <p className="text-xs font-semibold tracking-[0.22em] text-zinc-500 uppercase">Contato</p>
+                <h3 className="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-zinc-950">
+                  Vamos montar seu diagnóstico?
+                </h3>
+                <p className="mt-3 text-zinc-600 leading-relaxed">
+                  Responde rápido: a gente entende seu cenário e te devolve o próximo passo com clareza.
+                </p>
 
-          <motion.div
-            className="mt-8 grid gap-4 lg:grid-cols-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
-          >
-            {[
-              { t: "Campanha + landing + WhatsApp", d: "Captação e triagem sem fricção." },
-              { t: "Criativos de performance", d: "Hook, prova e CTA pra escalar testes." },
-              { t: "Otimização contínua", d: "Melhora de CPL e qualidade com rotina." },
-            ].map((c) => (
-              <motion.div key={c.t} variants={fadeUp}>
-                <SoftCard title={c.t} desc={c.d} />
-              </motion.div>
-            ))}
-          </motion.div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
+                    Tráfego pago
+                  </span>
+                  <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
+                    Copy & criativos
+                  </span>
+                  <span className="rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
+                    Landing & captação
+                  </span>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6">
+                <form action="/api/lead" method="POST" className="grid gap-3 sm:grid-cols-2">
+                  <div className="sm:col-span-1">
+                    <label className="text-xs font-medium text-zinc-700">Nome</label>
+                    <input
+                      name="name"
+                      required
+                      className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      placeholder="Seu nome"
+                    />
+                  </div>
+
+                  <div className="sm:col-span-1">
+                    <label className="text-xs font-medium text-zinc-700">WhatsApp</label>
+                    <input
+                      name="whatsapp"
+                      required
+                      className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      placeholder="(xx) xxxxx-xxxx"
+                    />
+                  </div>
+
+                  <div className="sm:col-span-2">
+                    <label className="text-xs font-medium text-zinc-700">Objetivo</label>
+                    <select
+                      name="goal"
+                      className="mt-1 w-full rounded-2xl border border-zinc-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-fuchsia-500/20"
+                      defaultValue="Leads"
+                    >
+                      <option>Leads</option>
+                      <option>Vendas</option>
+                      <option>Agenda cheia</option>
+                      <option>Escalar campanhas</option>
+                      <option>Reposicionar oferta</option>
+                    </select>
+                  </div>
+
+                  <div className="sm:col-span-2 pt-1">
+                    <button
+                      className="w-full rounded-full px-5 py-3 text-sm font-semibold text-white hover:opacity-95"
+                      style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+                    >
+                      Enviar diagnóstico
+                    </button>
+                    <p className="mt-2 text-[11px] text-zinc-500">
+                      Ao enviar, você concorda em receber contato pelo WhatsApp.
+                    </p>
+                  </div>
+
+                  {hasWhatsApp ? (
+                    <div className="sm:col-span-2">
+                      <Link
+                        href={whatsappHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-center rounded-full border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-50"
+                      >
+                        Prefiro chamar no WhatsApp agora →
+                      </Link>
+                    </div>
+                  ) : null}
+                </form>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="mx-auto max-w-6xl px-4 py-12">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
-            <SectionTitle eyebrow="FAQ" title="Objeções comuns (respondidas)." />
-          </motion.div>
-
-          <motion.div
-            className="mt-8 grid gap-4 lg:grid-cols-2"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={stagger}
-          >
+        <section id="faq" className="mx-auto max-w-6xl px-4 pb-14 sm:pb-20">
+          <SectionTitle eyebrow="FAQ" title="Dúvidas rápidas." subtitle="Objetivo: tirar objeção sem textão." />
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
             {faqs.map((f) => (
-              <motion.details
-                key={f.q}
-                variants={fadeUp}
-                className="rounded-3xl border border-zinc-200/70 bg-white/70 p-5 shadow-sm backdrop-blur"
-              >
+              <details key={f.q} className="rounded-3xl border border-zinc-200 bg-white p-5">
                 <summary className="cursor-pointer font-semibold text-zinc-950">{f.q}</summary>
                 <p className="mt-2 text-sm text-zinc-600 leading-relaxed">{f.a}</p>
-              </motion.details>
+              </details>
             ))}
-          </motion.div>
+          </div>
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-zinc-200/60 bg-white/40">
+        <footer className="border-t border-zinc-200 bg-white">
           <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-zinc-600">
             <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
               <p>
                 © {new Date().getFullYear()} {BRAND.name}. Todos os direitos reservados.
               </p>
-              <p className="text-xs">Next.js + Vercel • Tema Fúcsia</p>
+              <p className="text-xs">Next.js + Vercel</p>
             </div>
           </div>
         </footer>
       </main>
 
-      {/* Barra fixa mobile (conversão) */}
-      <div className="sm:hidden fixed inset-x-0 bottom-0 z-[70] border-t border-zinc-200/70 bg-white/80 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-4 py-3 grid grid-cols-2 gap-3">
+      {/* Barra fixa no mobile (minimal, estilo site referência) */}
+      <div className="sm:hidden fixed inset-x-0 bottom-0 z-[70] border-t border-white/15 bg-[#2F3034]/90 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 py-3">
           <a
             href="#contato"
-            className="inline-flex items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold text-white shadow-sm"
-            style={{ backgroundImage: `linear-gradient(90deg, ${BRAND.accent}, ${BRAND.accent2})` }}
+            className="block w-full text-center rounded-full border border-white/35 bg-transparent px-5 py-3 text-sm font-semibold text-white"
           >
-            Diagnóstico
+            ENTRE EM CONTATO
           </a>
-          <Link
-            href={whatsappHref}
-            target={hasWhatsApp ? "_blank" : undefined}
-            rel={hasWhatsApp ? "noopener noreferrer" : undefined}
-            className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm font-semibold text-zinc-950"
-          >
-            WhatsApp
-          </Link>
         </div>
       </div>
 
-      {/* Espaço pra barra não cobrir conteúdo */}
       <div className="sm:hidden h-[78px]" />
     </div>
   );
