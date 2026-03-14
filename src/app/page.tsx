@@ -10,8 +10,8 @@ const BRAND = {
   accent: "#C026D3",
   accent2: "#7C3AED",
   // grafite minimalista (parecido com o site referência)
-  graphite: "#3E3F43",
-  graphite2: "#2F3034",
+  graphite: "#55575E",
+  graphite2: "#44464D",
   paper: "#FFFFFF",
 };
 
@@ -215,7 +215,7 @@ export default function Page() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-4 text-white font-semibold tracking-tight leading-[1.02] text-[42px] sm:text-[54px]"
+                className="mt-4 text-white font-semibold tracking-tight leading-[1.02] text-[52px] sm:text-[68px]"
                 style={{ letterSpacing: "-0.03em" }}
               >
                 QUEM
@@ -242,6 +242,13 @@ export default function Page() {
                   className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white/95 hover:bg-white/15"
                 >
                   VER SERVIÇOS
+                </a>
+
+                <a
+                  href="#"
+                  className="inline-flex items-center justify-center rounded-full border border-green-400/50 bg-green-500/15 px-6 py-3 text-sm font-semibold text-green-300 hover:bg-green-500/25"
+                >
+                  Falar no WhatsApp
                 </a>
               </motion.div>
 
